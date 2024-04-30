@@ -29,7 +29,7 @@ public class SanPhamView extends javax.swing.JPanel {
     private sanPham sp;
     private ArrayList<sanPham> list = new ArrayList<>();
     private ArrayList<DanhMuc> listDM = new ArrayList<>();
-    DALsanPham dalSp = new DALsanPham();
+    SanPhamBLL spBLL = new SanPhamBLL(this);
     DanhMucBLL dmBLL = new DanhMucBLL();
     private int count = -1;
     private int soluong;
@@ -38,7 +38,6 @@ public class SanPhamView extends javax.swing.JPanel {
 
     String matmp, tentmp, soluongtmp, dongiatmp;
 
-    SanPhamBLL spBLL = new SanPhamBLL(this);
 
     public SanPhamView() {
         initComponents();
@@ -108,7 +107,7 @@ public class SanPhamView extends javax.swing.JPanel {
     }
 
     public void getTable() {
-        list = dalSp.selectAll();
+        list = spBLL.getALL();
         try {
             for (sanPham row : list) {
                 model.addRow(new Object[]{
