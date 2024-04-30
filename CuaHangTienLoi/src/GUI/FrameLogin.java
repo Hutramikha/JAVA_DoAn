@@ -1,17 +1,15 @@
 
 package GUI;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import BLL.LoginBLL;
-import javax.swing.event.AncestorListener;
-public class FrameLogin extends javax.swing.JFrame {
+import BLL.LoginoutBLL;
+import javax.swing.JOptionPane;
 
+public class FrameLogin extends javax.swing.JFrame {
+    LoginoutBLL logbll = new LoginoutBLL(this);
   
     public FrameLogin() {
         initComponents();
-        LoginBLL logbll = new LoginBLL(this);
-        btn_dn.addActionListener(logbll);
+        
     }
     
     public void FrameLogin(){
@@ -151,31 +149,31 @@ public class FrameLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_xemPassActionPerformed
 
     private void btn_dnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dnActionPerformed
-        //        if (evt.getSource().equals(dnbtn)) {
-            //            String username = UserDNfield.getText().trim();
-            //            String password = PassDNfield.getText().trim();
-            //            if (username.isEmpty() || password.isEmpty()) {
-                //                JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
-                //            } else {
-                //                int status = user.checkStatus(username, password);
-                //                switch (status) {
-                    //                    case 0 -> {
-                        //                        NVpage nv = new NVpage();
-                        //                        FrameDNDK f = new FrameDNDK();
-                        //                        nv.setVisible(true);
-                        //                        f.setVisible(false);
-                        //                    }
-                    //                    case 1 -> {
-                        //                        KHpage kh = new KHpage();
-                        //                        FrameDNDK f = new FrameDNDK();
-                        //                        kh.setVisible(true);
-                        //                        f.setVisible(false);
-                        //                    }
-                    //                    default -> JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu không chính xác !!!");
-                    //                }
-                //            }
-            //        } else {
-            //        }
+        String username = username_dn.getText().trim();
+            String password = pass_dn.getText().trim();
+            if(username.isEmpty() || password.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin");
+            }
+            else {
+                int status = logbll.CheckStatusBLL(username, password);
+                switch (status) {
+                    case 0 -> {
+                        TrangChu tc = new TrangChu(username);
+                        username_dn.setText("");
+                        pass_dn.setText("");
+                        this.dispose();
+                        tc.setVisible(true);
+                    }
+                    case 1 -> {
+                        TrangChu tc = new TrangChu(username);
+                        username_dn.setText("");
+                        pass_dn.setText("");
+                        this.dispose();
+                        tc.setVisible(true);
+                    }
+                    default -> JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu không chính xác !!!");
+                }
+            }
     }//GEN-LAST:event_btn_dnActionPerformed
 
 //    public static void main(String args[]) {
