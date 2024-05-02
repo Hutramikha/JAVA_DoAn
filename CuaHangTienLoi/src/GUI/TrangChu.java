@@ -14,6 +14,7 @@ public class TrangChu extends JFrame{
     NhanVienView nvView = new NhanVienView();
     SanPhamView spView = new SanPhamView();
     KhachHangView khView = new KhachHangView();
+    phieuNhap pnView = new phieuNhap();
     
     public TrangChu(String username) {
         initComponents();
@@ -58,6 +59,7 @@ public class TrangChu extends JFrame{
         Pane_content.add(nvView,"QL Nhân Viên");
         Pane_content.add(spView,"QL Sản Phẩm");
         Pane_content.add(khView,"QL Khách Hàng");
+        Pane_content.add(pnView,"Phiếu Nhập");
        
         isMenuVisible = false;
         Pane_content.setVisible(isMenuVisible);
