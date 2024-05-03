@@ -7,7 +7,7 @@ package GUI;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import DTO.sanPham;
-import DTO.DanhMuc;
+import DTO.danhMuc;
 import DAL.DALsanPham;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -28,15 +28,16 @@ public class SanPhamView extends javax.swing.JPanel {
     DefaultTableModel model;
     private sanPham sp;
     private ArrayList<sanPham> list = new ArrayList<>();
-    private ArrayList<DanhMuc> listDM = new ArrayList<>();
+    private ArrayList<danhMuc> listDM = new ArrayList<>();
     SanPhamBLL spBLL = new SanPhamBLL(this);
     DanhMucBLL dmBLL = new DanhMucBLL();
     private int count = -1;
     private int soluong;
     private long dongia;
-    File selectFile;
 
-    String matmp, tentmp, soluongtmp, dongiatmp;
+    private String matmp, tentmp, soluongtmp, dongiatmp;
+    private File selectFile;
+    private Icon icontmp;
 
 
     public SanPhamView() {
@@ -53,7 +54,7 @@ public class SanPhamView extends javax.swing.JPanel {
 
         model = (DefaultTableModel) table_sp.getModel();
         model.setColumnIdentifiers(new Object[]{
-            "Mã sản phẩm", "Tên sản phẩm", "Mã loại", "Số lượng", "Đơn giá", "Hình ảnh"
+            "Mã sản phẩm", "Tên sản phẩm", "Mã loại", "Số lượng", "Đơn giá", "Ảnh minh họa"
         });
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -154,8 +155,8 @@ public class SanPhamView extends javax.swing.JPanel {
 
     public void comboBox() {
         listDM = dmBLL.getALL();
-        for (DanhMuc dataDM : listDM) {
-            maloai_sp.addItem(dataDM.getMaloaisp());
+        for (danhMuc dataDM : listDM) {
+            maloai_sp.addItem(dataDM.getMaloai());
         }
     }
 
@@ -218,12 +219,13 @@ public class SanPhamView extends javax.swing.JPanel {
         jScrollPane1.setViewportView(table_sp);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 204, 0));
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Quản Lý Sản Phẩm");
 
-        jButton1.setBackground(new java.awt.Color(153, 255, 255));
+        jButton1.setBackground(new java.awt.Color(0, 102, 102));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Tìm kiếm");
         jButton1.setToolTipText("");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -272,8 +274,9 @@ public class SanPhamView extends javax.swing.JPanel {
 
         dongia_sp.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
 
-        btn_them.setBackground(new java.awt.Color(51, 255, 0));
+        btn_them.setBackground(new java.awt.Color(102, 102, 102));
         btn_them.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_them.setForeground(new java.awt.Color(255, 255, 255));
         btn_them.setText("Thêm");
         btn_them.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_them.addActionListener(new java.awt.event.ActionListener() {
@@ -282,8 +285,9 @@ public class SanPhamView extends javax.swing.JPanel {
             }
         });
 
-        btn_luu.setBackground(new java.awt.Color(51, 255, 0));
+        btn_luu.setBackground(new java.awt.Color(0, 102, 0));
         btn_luu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_luu.setForeground(new java.awt.Color(255, 255, 255));
         btn_luu.setText("Lưu");
         btn_luu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_luu.addActionListener(new java.awt.event.ActionListener() {
@@ -292,8 +296,9 @@ public class SanPhamView extends javax.swing.JPanel {
             }
         });
 
-        btn_sua.setBackground(new java.awt.Color(51, 255, 0));
+        btn_sua.setBackground(new java.awt.Color(102, 102, 102));
         btn_sua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_sua.setForeground(new java.awt.Color(255, 255, 255));
         btn_sua.setText("Sửa");
         btn_sua.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_sua.addActionListener(new java.awt.event.ActionListener() {
@@ -302,8 +307,9 @@ public class SanPhamView extends javax.swing.JPanel {
             }
         });
 
-        btn_xoa.setBackground(new java.awt.Color(51, 255, 0));
+        btn_xoa.setBackground(new java.awt.Color(153, 0, 0));
         btn_xoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_xoa.setForeground(new java.awt.Color(255, 255, 255));
         btn_xoa.setText("Xóa");
         btn_xoa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_xoa.addActionListener(new java.awt.event.ActionListener() {
@@ -312,8 +318,9 @@ public class SanPhamView extends javax.swing.JPanel {
             }
         });
 
-        btn_reset.setBackground(new java.awt.Color(51, 255, 0));
+        btn_reset.setBackground(new java.awt.Color(102, 102, 102));
         btn_reset.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_reset.setForeground(new java.awt.Color(255, 255, 255));
         btn_reset.setText("Reset");
         btn_reset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_reset.addActionListener(new java.awt.event.ActionListener() {
@@ -360,14 +367,12 @@ public class SanPhamView extends javax.swing.JPanel {
                                 .addGap(186, 206, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btn_luu, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btn_sua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(btn_reset, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_luu, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_xoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_reset, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_sua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -418,17 +423,18 @@ public class SanPhamView extends javax.swing.JPanel {
                             .addComponent(jLabel8)
                             .addComponent(btn_chonanh))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
                                 .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25)
-                                .addComponent(btn_luu, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25)
+                                .addGap(12, 12, 12)
                                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25)
+                                .addGap(12, 12, 12)
+                                .addComponent(btn_reset, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
                                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_reset, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_luu, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(image_label, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1))
                 .addContainerGap(47, Short.MAX_VALUE))
@@ -458,13 +464,6 @@ public class SanPhamView extends javax.swing.JPanel {
                     return;
                 }
 
-                if (icon instanceof ImageIcon) {
-                    img = selectFile.getAbsolutePath();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Đây không phải là ảnh");
-                    return;
-                }
-
                 if (!soluongTxt.isEmpty()) {
                     try {
                         soluong = Integer.parseInt(soluongTxt);
@@ -481,6 +480,13 @@ public class SanPhamView extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Đơn giá không hợp lệ");
                         return;
                     }
+                }
+                
+                if (icon instanceof ImageIcon) {
+                    img = selectFile.getAbsolutePath();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Đây không phải là ảnh");
+                    return;
                 }
 
                 try {
@@ -505,6 +511,18 @@ public class SanPhamView extends javax.swing.JPanel {
                 String soluongTxt = soluong_sp.getText().trim();
                 String dongiaTxt = dongia_sp.getText().trim();
                 Icon icon = image_label.getIcon();
+                
+                if (matmp.equals(ma) && tentmp.equals(ten) && soluongtmp.equals(soluongTxt) && dongiatmp.equals(dongiaTxt) && icontmp.equals(icon)) {
+                    int confirm = JOptionPane.showConfirmDialog(this, "Chưa có thông tin nào được sửa đổi, bạn có muốn tiếp tục ?");
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        return;
+                    } else {
+                        ResetFieldText();
+                        UnEditable();
+                        btn_sua.setEnabled(true);
+                        return;
+                    }
+                }
 
                 if (!matmp.equals(ma)) {
                     for (sanPham tmp : list) {
@@ -536,24 +554,12 @@ public class SanPhamView extends javax.swing.JPanel {
                         return;
                     }
                 }
-
+                
                 if (icon instanceof ImageIcon) {
                     img = selectFile.getAbsolutePath();
                 } else {
                     JOptionPane.showMessageDialog(this, "Đây không phải là ảnh");
                     return;
-                }
-
-                if (matmp.equals(ma) && tentmp.equals(ten) && soluongtmp.equals(soluong) && dongiatmp.equals(dongia)) {
-                    int confirm = JOptionPane.showConfirmDialog(this, "Chưa có thông tin nào được sửa đổi, bạn có muốn tiếp tục ?");
-                    if (confirm == JOptionPane.YES_OPTION) {
-                        return;
-                    } else {
-                        ResetFieldText();
-                        UnEditable();
-                        btn_sua.setEnabled(true);
-                        return;
-                    }
                 }
 
                 try {
@@ -580,8 +586,8 @@ public class SanPhamView extends javax.swing.JPanel {
         tentmp = ten_sp.getText();
         dongiatmp = dongia_sp.getText();
         soluongtmp = soluong_sp.getText();
-        Icon icon = image_label.getIcon();
-        if (ma.isEmpty() && ten.isEmpty() && dongiaTxt.isEmpty() && icon == null && soluongTxt.isEmpty()) {
+        icontmp = image_label.getIcon();
+        if (ma.isEmpty() && ten.isEmpty() && dongiaTxt.isEmpty() && icontmp == null && soluongTxt.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn đối tượng cần sửa");
         } else {
             Editable();
@@ -654,7 +660,6 @@ public class SanPhamView extends javax.swing.JPanel {
         if (!btn_sua.isEnabled()) {
             btn_sua.setEnabled(true);
         }
-        comboBox();
         clearTable();
         getTable();
     }//GEN-LAST:event_btn_resetActionPerformed

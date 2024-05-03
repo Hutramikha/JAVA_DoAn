@@ -45,53 +45,68 @@ public class ShowInfo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 33)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Thông Tin Tài Khoản");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mã định danh:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Họ:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Tên:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Số điện thoại:");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Ngày sinh:");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Chức vụ:");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Lương:");
 
         ma_tk.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        ma_tk.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        ma_tk.setForeground(new java.awt.Color(255, 255, 255));
+        ma_tk.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 0), 3, true));
 
         ho_tk.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        ho_tk.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        ho_tk.setForeground(new java.awt.Color(255, 255, 255));
+        ho_tk.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 0), 3, true));
 
         ten_tk.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        ten_tk.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        ten_tk.setForeground(new java.awt.Color(255, 255, 255));
+        ten_tk.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 0), 3, true));
 
         sdt_tk.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        sdt_tk.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        sdt_tk.setForeground(new java.awt.Color(255, 255, 255));
+        sdt_tk.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 0), 3, true));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 0), 3, true));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 0), 3, true));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 0), 3, true));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

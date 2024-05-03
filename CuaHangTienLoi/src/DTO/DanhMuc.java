@@ -8,20 +8,23 @@ package DTO;
  *
  * @author votru
  */
-public class DanhMuc {
-    private String maloaisp;
+public class danhMuc {
+    private String maloai;
     private String tenloai;
     private String img;
 
-    public DanhMuc(String maloaisp, String tenloai, String img) {
-        this.maloaisp = maloaisp;
+    public danhMuc(String maloai, String tenloai, String img) {
+        this.maloai = maloai;
         this.tenloai = tenloai;
         this.img = img;
     }
-
-    public String getMaloaisp() {
-        return maloaisp;
+    
+    public danhMuc(){
+        
     }
+
+    public String getMaloai() {
+        return maloai;    }
 
     public String getTenloai() {
         return tenloai;
@@ -31,8 +34,8 @@ public class DanhMuc {
         return img;
     }
 
-    public void setMaloaisp(String maloaisp) {
-        this.maloaisp = maloaisp;
+    public void setMaloai(String maloai) {
+        this.maloai = maloai;
     }
 
     public void setTenloai(String tenloai) {
@@ -45,7 +48,7 @@ public class DanhMuc {
 
     @Override
     public String toString() {
-        return "DanhMuc{" + "maloaisp=" + maloaisp + ", tenloai=" + tenloai + ", img=" + img + '}';
+        return "DanhMuc{" + "maloaisp=" + maloai + ", tenloai=" + tenloai + ", img=" + img + '}';
     }
     
     

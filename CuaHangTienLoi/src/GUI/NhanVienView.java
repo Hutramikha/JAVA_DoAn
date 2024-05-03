@@ -205,12 +205,13 @@ public class NhanVienView extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(980, 650));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 204, 0));
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Quản Lý Nhân Viên");
 
-        jButton1.setBackground(new java.awt.Color(153, 255, 255));
+        jButton1.setBackground(new java.awt.Color(0, 102, 102));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Tìm kiếm");
         jButton1.setToolTipText("");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -243,8 +244,9 @@ public class NhanVienView extends javax.swing.JPanel {
         ngaysinh_nv.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         ngaysinh_nv.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        btn_them.setBackground(new java.awt.Color(51, 255, 0));
+        btn_them.setBackground(new java.awt.Color(102, 102, 102));
         btn_them.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_them.setForeground(new java.awt.Color(255, 255, 255));
         btn_them.setText("Thêm");
         btn_them.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_them.addActionListener(new java.awt.event.ActionListener() {
@@ -253,8 +255,9 @@ public class NhanVienView extends javax.swing.JPanel {
             }
         });
 
-        btn_luu.setBackground(new java.awt.Color(51, 255, 0));
+        btn_luu.setBackground(new java.awt.Color(0, 102, 0));
         btn_luu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_luu.setForeground(new java.awt.Color(255, 255, 255));
         btn_luu.setText("Lưu");
         btn_luu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_luu.addActionListener(new java.awt.event.ActionListener() {
@@ -263,8 +266,9 @@ public class NhanVienView extends javax.swing.JPanel {
             }
         });
 
-        btn_sua.setBackground(new java.awt.Color(51, 255, 0));
+        btn_sua.setBackground(new java.awt.Color(102, 102, 102));
         btn_sua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_sua.setForeground(new java.awt.Color(255, 255, 255));
         btn_sua.setText("Sửa");
         btn_sua.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_sua.addActionListener(new java.awt.event.ActionListener() {
@@ -273,8 +277,9 @@ public class NhanVienView extends javax.swing.JPanel {
             }
         });
 
-        btn_xoa.setBackground(new java.awt.Color(51, 255, 0));
+        btn_xoa.setBackground(new java.awt.Color(153, 0, 0));
         btn_xoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_xoa.setForeground(new java.awt.Color(255, 255, 255));
         btn_xoa.setText("Xóa");
         btn_xoa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_xoa.addActionListener(new java.awt.event.ActionListener() {
@@ -327,8 +332,9 @@ public class NhanVienView extends javax.swing.JPanel {
         gioitinh_nv.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         gioitinh_nv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ", "Khác" }));
 
-        btn_reset.setBackground(new java.awt.Color(51, 255, 0));
+        btn_reset.setBackground(new java.awt.Color(102, 102, 102));
         btn_reset.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_reset.setForeground(new java.awt.Color(255, 255, 255));
         btn_reset.setText("Reset");
         btn_reset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_reset.addActionListener(new java.awt.event.ActionListener() {
@@ -407,14 +413,15 @@ public class NhanVienView extends javax.swing.JPanel {
                                 .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(btn_luu, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
+                                .addGap(18, 18, 18)
                                 .addComponent(btn_sua, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_reset, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(85, 85, 85)
                                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(btn_reset, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_luu, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );

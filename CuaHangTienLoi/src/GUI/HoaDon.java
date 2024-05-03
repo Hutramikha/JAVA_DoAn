@@ -67,7 +67,7 @@ public class HoaDon extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(985, 650));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 204, 0));
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setText("HÓA ĐƠN");
 
         table_all.getTableHeader().setResizingAllowed(false);
@@ -199,11 +199,12 @@ public class HoaDon extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 204, 51));
+        jLabel2.setForeground(new java.awt.Color(0, 102, 0));
         jLabel2.setText("Tổng tiền:");
 
+        jButton1.setBackground(new java.awt.Color(0, 102, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 153, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Thanh toán");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -234,16 +235,19 @@ public class HoaDon extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(0, 0, 204));
         jLabel9.setText("Số lượng mua:");
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 153, 0));
+        jButton2.setBackground(new java.awt.Color(102, 102, 102));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Reset");
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 153, 0));
+        jButton3.setBackground(new java.awt.Color(153, 0, 0));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Xóa SP");
 
+        jButton4.setBackground(new java.awt.Color(0, 51, 153));
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 153, 0));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Thêm SP");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

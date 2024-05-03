@@ -53,7 +53,7 @@ public class CTHoaDon extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 204, 0));
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setText("Lịch Sử Hóa Đơn");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -69,7 +69,7 @@ public class CTHoaDon extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 204, 0));
+        jLabel2.setForeground(new java.awt.Color(0, 102, 102));
         jLabel2.setText("Chi Tiết Hóa Đơn");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,12 +110,14 @@ public class CTHoaDon extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(0, 102, 0));
         jLabel9.setText("Thành tiền:");
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 153, 0));
+        jButton2.setBackground(new java.awt.Color(0, 51, 153));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Cập nhật");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 153, 0));
+        jButton1.setBackground(new java.awt.Color(153, 0, 0));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Xóa");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
