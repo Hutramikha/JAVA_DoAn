@@ -38,6 +38,7 @@ public class SanPhamView extends javax.swing.JPanel {
     private String matmp, tentmp, soluongtmp, dongiatmp;
     private File selectFile;
     private Icon icontmp;
+    
 
 
     public SanPhamView() {
@@ -140,11 +141,9 @@ public class SanPhamView extends javax.swing.JPanel {
         ma_sp.setEditable(false);
         ten_sp.setEditable(false);
         dongia_sp.setEditable(false);
-        soluong_sp.setEditable(false);
     }
 
     public void Editable() {
-        soluong_sp.setEditable(true);
         btn_luu.setEnabled(true);
         maloai_sp.setEnabled(true);
         btn_chonanh.setEnabled(true);
@@ -455,7 +454,7 @@ public class SanPhamView extends javax.swing.JPanel {
                 String ma = ma_sp.getText().trim();
                 String ten = ten_sp.getText().trim();
                 String maloai = (String) maloai_sp.getSelectedItem();
-                String soluongTxt = soluong_sp.getText().trim();
+                soluong = 0;
                 String dongiaTxt = dongia_sp.getText().trim();
                 Icon icon = image_label.getIcon();
 
@@ -464,14 +463,6 @@ public class SanPhamView extends javax.swing.JPanel {
                     return;
                 }
 
-                if (!soluongTxt.isEmpty()) {
-                    try {
-                        soluong = Integer.parseInt(soluongTxt);
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(this, "Số lượng không hợp lệ");
-                        return;
-                    }
-                }
 
                 if (!dongiaTxt.isEmpty()) {
                     try {
@@ -592,6 +583,7 @@ public class SanPhamView extends javax.swing.JPanel {
         } else {
             Editable();
             count = 2;
+            soluong_sp.setEditable(true);
             btn_sua.setEnabled(false);
         }
     }//GEN-LAST:event_btn_suaActionPerformed
@@ -612,9 +604,9 @@ public class SanPhamView extends javax.swing.JPanel {
                 if (confirm == JOptionPane.YES_OPTION) {
                     Image image = ((ImageIcon) icon).getImage();
                     String imagePath = image.toString();
-                    int soluong = Integer.parseInt(soluongTxt);
+                    int soluongSua = Integer.parseInt(soluongTxt);
                     long dongiasp = Long.parseLong(dongiaTxt);
-                    sp = new sanPham(ma, ten, maloaisp, soluong, dongiasp, imagePath);
+                    sp = new sanPham(ma, ten, maloaisp, soluongSua, dongiasp, imagePath);
                     list.remove(sp);
                     spBLL.delete(sp);
                     ResetFieldText();
