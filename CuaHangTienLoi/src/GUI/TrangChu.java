@@ -1,26 +1,31 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
+import GUI.*;
 import java.awt.CardLayout;
 import java.awt.Cursor;
 
-public class TrangChu extends JFrame{
+public class TrangChu extends JFrame {
+
     CardLayout cardlayout;
     private boolean isMenuVisible;
     NhanVienView nvView = new NhanVienView();
     SanPhamView spView = new SanPhamView();
     KhachHangView khView = new KhachHangView();
     NhaCungCap nccView = new NhaCungCap();
-    DanhMuc dmView = new DanhMuc(); 
+    DanhMuc dmView = new DanhMuc();
     phieuNhap pnView = new phieuNhap();
     HoaDon hdView = new HoaDon();
     CTHoaDon ctHDView = new CTHoaDon();
-    
+    HELLO helloView = new HELLO();
+
     public TrangChu(String username) {
         initComponents();
     }
-    
+
     public void ClearTableALL() {
         nvView.clearTable();
         spView.clearTable();
@@ -46,68 +51,66 @@ public class TrangChu extends JFrame{
         lDoanhThu = new javax.swing.JLabel();
         pNhanVien = new javax.swing.JPanel();
         lNhanVien = new javax.swing.JLabel();
-        pQuanLy = new javax.swing.JPanel();
-        lQuanLy = new javax.swing.JLabel();
+        pQuanLyKH = new javax.swing.JPanel();
+        lQuanLyKH = new javax.swing.JLabel();
         pNhaCC = new javax.swing.JPanel();
         lNhaCC = new javax.swing.JLabel();
         pDangXuat = new javax.swing.JPanel();
         lDangXuat = new javax.swing.JLabel();
         pTaiKhoan = new javax.swing.JPanel();
         lTaiKhoan = new javax.swing.JLabel();
-        
-        
+        pPhieuNhap = new javax.swing.JPanel();
+        lPhieuNhap = new javax.swing.JLabel();
+        lTenTK = new javax.swing.JLabel();
+
         cardlayout = new CardLayout();
         Pane_content.setLayout(cardlayout);
-        
-        
-        Pane_content.add(nvView,"QL Nhân Viên");
-        Pane_content.add(spView,"QL Sản Phẩm");
-        Pane_content.add(khView,"QL Khách Hàng");
-        Pane_content.add(pnView,"Phiếu Nhập");
-        Pane_content.add(nccView,"Nhà Cung Cấp");
-        Pane_content.add(dmView,"Danh Mục");
-        Pane_content.add(hdView,"Hóa Đơn");
-        Pane_content.add(ctHDView,"Chi Tiết HĐ");
-       
 
-        Pane_content.validate();
-        Pane_content.repaint();
+        Pane_content.add(nvView, "QL Nhân Viên");
+        Pane_content.add(spView, "QL Sản Phẩm");
+        Pane_content.add(khView, "QL Khách Hàng");
+        Pane_content.add(pnView, "Phiếu Nhập");
+        Pane_content.add(nccView, "Nhà Cung Cấp");
+        Pane_content.add(dmView, "Danh Mục");
+        Pane_content.add(hdView, "Hóa Đơn");
+        Pane_content.add(ctHDView, "Chi Tiết HĐ");
+        
+
         isMenuVisible = false;
         Pane_content.setVisible(isMenuVisible);
-        
-        
-        this.setSize(1240,700);
+
+        this.setSize(1240, 690);
         this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        
-        
-        
+
         MenuPanel.setLayout(null);
 
         MenuPanel.setBackground(new java.awt.Color(29, 117, 109));
 
-        
-        Pane_cover.setSize(1240,690);
+        Pane_cover.setSize(1240, 690);
         Pane_cover.setBackground(Color.white);
         Pane_content.setBackground(Color.white);
         MenuPanel.setBounds(0, 0, 200, 690);
-        Pane_content.setBounds(205,0,1015,690);
-        
+        Pane_content.setBounds(205, 0, 1015, 690);
+
         Pane_cover.setLayout(null);
         this.setLayout(null);
-        
+
+        lTenTK.setFont(new java.awt.Font("Sitka Text", 0, 16)); // NOI18N
+        lTenTK.setForeground(new java.awt.Color(255, 255, 255));
+        lTenTK.setBounds(0, 20, 200, 30);
+        //lTenTK.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+        lTenTK.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lTenTK.setText("Xin chào:");
+
         pHoaDon.setLayout(null);
         pHoaDon.setBackground(new java.awt.Color(29, 117, 109));
         pHoaDon.setBounds(0, 75, 200, 50);
         pHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-//                ClearTableALL();
-                isMenuVisible = true;
-                Pane_content.setVisible(isMenuVisible);
-                cardlayout.show(Pane_content, "Hóa Đơn");
-//                dmView.getTable();
+
             }
 
             @Override
@@ -137,11 +140,11 @@ public class TrangChu extends JFrame{
         pChiTietHD.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-//                ClearTableALL();
+                //ClearTableALL();
                 isMenuVisible = true;
                 Pane_content.setVisible(isMenuVisible);
                 cardlayout.show(Pane_content, "Chi Tiết HĐ");
-//                dmView.getTable();
+//                spView.getTable();
             }
 
             @Override
@@ -164,7 +167,6 @@ public class TrangChu extends JFrame{
         labelY = (pHoaDon.getHeight() - lChiTietHD.getPreferredSize().height) / 2;
         lChiTietHD.setBounds(labelX, labelY, lChiTietHD.getPreferredSize().width, lChiTietHD.getPreferredSize().height);
 
-
         pDanhMuc.setLayout(null);
         pDanhMuc.setBackground(new java.awt.Color(29, 117, 109));
         pDanhMuc.setBounds(0, 175, 200, 50);
@@ -175,6 +177,8 @@ public class TrangChu extends JFrame{
                 isMenuVisible = true;
                 Pane_content.setVisible(isMenuVisible);
                 cardlayout.show(Pane_content, "Danh Mục");
+                dmView.revalidate();
+                dmView.repaint();
                 dmView.getTable();
             }
 
@@ -197,12 +201,11 @@ public class TrangChu extends JFrame{
         labelX = (pHoaDon.getWidth() - lDanhMuc.getPreferredSize().width) / 2;
         labelY = (pHoaDon.getHeight() - lDanhMuc.getPreferredSize().height) / 2;
         lDanhMuc.setBounds(labelX, labelY, lDanhMuc.getPreferredSize().width, lDanhMuc.getPreferredSize().height);
-        
 
         pSanPham.setLayout(null);
         pSanPham.setBackground(new java.awt.Color(29, 117, 109));
         pSanPham.setBounds(0, 225, 200, 50);
-        
+
         // Nút hiện QL Sản Phẩm
         pSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -234,7 +237,6 @@ public class TrangChu extends JFrame{
         labelX = (pHoaDon.getWidth() - lSanPham.getPreferredSize().width) / 2;
         labelY = (pHoaDon.getHeight() - lSanPham.getPreferredSize().height) / 2;
         lSanPham.setBounds(labelX, labelY, lSanPham.getPreferredSize().width, lSanPham.getPreferredSize().height);
-        
 
         pDoanhThu.setLayout(null);
         pDoanhThu.setBackground(new java.awt.Color(29, 117, 109));
@@ -268,7 +270,7 @@ public class TrangChu extends JFrame{
         pNhanVien.setLayout(null);
         pNhanVien.setBackground(new java.awt.Color(29, 117, 109));
         pNhanVien.setBounds(0, 325, 200, 50);
-        
+
         // Nút hiện QL Nhân Viên
         pNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -333,12 +335,12 @@ public class TrangChu extends JFrame{
         labelY = (pHoaDon.getHeight() - lNhaCC.getPreferredSize().height) / 2;
         lNhaCC.setBounds(labelX, labelY, lNhaCC.getPreferredSize().width, lNhaCC.getPreferredSize().height);
 
-        pQuanLy.setLayout(null);
-        pQuanLy.setBackground(new java.awt.Color(29, 117, 109));
-        pQuanLy.setBounds(0, 425, 200, 50);
-        
+        pQuanLyKH.setLayout(null);
+        pQuanLyKH.setBackground(new java.awt.Color(29, 117, 109));
+        pQuanLyKH.setBounds(0, 425, 200, 50);
+
         // Nút hiện QL Khách Hàng
-        pQuanLy.addMouseListener(new java.awt.event.MouseAdapter() {
+        pQuanLyKH.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ClearTableALL();
@@ -350,28 +352,60 @@ public class TrangChu extends JFrame{
 
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pQuanLy.setBackground(new Color(64, 164, 156));
-                pQuanLy.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                pQuanLyKH.setBackground(new Color(64, 164, 156));
+                pQuanLyKH.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pQuanLy.setBackground(new Color(29, 117, 109));
+                pQuanLyKH.setBackground(new Color(29, 117, 109));
             }
         });
 
-        lQuanLy.setFont(new java.awt.Font("Sitka Text", 0, 16)); // NOI18N
-        lQuanLy.setForeground(new java.awt.Color(255, 255, 255));
-        lQuanLy.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lQuanLy.setText("QL Khách Hàng");
-        labelX = (pHoaDon.getWidth() - lQuanLy.getPreferredSize().width) / 2;
-        labelY = (pHoaDon.getHeight() - lQuanLy.getPreferredSize().height) / 2;
-        lQuanLy.setBounds(labelX, labelY, lQuanLy.getPreferredSize().width, lQuanLy.getPreferredSize().height);
-        
+        lQuanLyKH.setFont(new java.awt.Font("Sitka Text", 0, 16)); // NOI18N
+        lQuanLyKH.setForeground(new java.awt.Color(255, 255, 255));
+        lQuanLyKH.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lQuanLyKH.setText("QL Khách Hàng");
+        labelX = (pHoaDon.getWidth() - lQuanLyKH.getPreferredSize().width) / 2;
+        labelY = (pHoaDon.getHeight() - lQuanLyKH.getPreferredSize().height) / 2;
+        lQuanLyKH.setBounds(labelX, labelY, lQuanLyKH.getPreferredSize().width, lQuanLyKH.getPreferredSize().height);
+
+        pPhieuNhap.setLayout(null);
+        pPhieuNhap.setBackground(new java.awt.Color(29, 117, 109));
+        pPhieuNhap.setBounds(0, 475, 200, 50);
+        pPhieuNhap.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                //                ClearTableALL();
+                isMenuVisible = true;
+                Pane_content.setVisible(isMenuVisible);
+                cardlayout.show(Pane_content, "QL Phiếu Nhập");
+//                khView.getTable();
+            }
+
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pPhieuNhap.setBackground(new Color(64, 164, 156));
+                pPhieuNhap.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pPhieuNhap.setBackground(new Color(29, 117, 109));
+            }
+        });
+
+        lPhieuNhap.setFont(new java.awt.Font("Sitka Text", 0, 16)); // NOI18N
+        lPhieuNhap.setForeground(new java.awt.Color(255, 255, 255));
+        lPhieuNhap.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lPhieuNhap.setText("QL Phiếu Nhập");
+        labelX = (pHoaDon.getWidth() - lPhieuNhap.getPreferredSize().width) / 2;
+        labelY = (pHoaDon.getHeight() - lPhieuNhap.getPreferredSize().height) / 2;
+        lPhieuNhap.setBounds(labelX, labelY, lPhieuNhap.getPreferredSize().width, lPhieuNhap.getPreferredSize().height);
 
         pTaiKhoan.setLayout(null);
         pTaiKhoan.setBackground(new java.awt.Color(29, 117, 109));
-        pTaiKhoan.setBounds(0, 475, 200, 50);
+        pTaiKhoan.setBounds(0, 525, 200, 50);
         pTaiKhoan.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -400,7 +434,7 @@ public class TrangChu extends JFrame{
 
         pDangXuat.setLayout(null);
         pDangXuat.setBackground(new java.awt.Color(29, 117, 109));
-        pDangXuat.setBounds(0, 525, 200, 50);
+        pDangXuat.setBounds(0, 575, 200, 50);
         pDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -427,52 +461,50 @@ public class TrangChu extends JFrame{
         labelY = (pHoaDon.getHeight() - lDangXuat.getPreferredSize().height) / 2;
         lDangXuat.setBounds(labelX, labelY, lDangXuat.getPreferredSize().width, lDangXuat.getPreferredSize().height);
 
-
         MenuPanel.add(pHoaDon);
         MenuPanel.add(pChiTietHD);
         MenuPanel.add(pDanhMuc);
         MenuPanel.add(pSanPham);
         MenuPanel.add(pDoanhThu);
         MenuPanel.add(pNhanVien);
-        MenuPanel.add(pQuanLy);
+        MenuPanel.add(pQuanLyKH);
         MenuPanel.add(pNhaCC);
         MenuPanel.add(pDangXuat);
         MenuPanel.add(pTaiKhoan);
-        
+        MenuPanel.add(pPhieuNhap);
+        MenuPanel.add(lTenTK);
+
         pHoaDon.setFocusable(true);
         pChiTietHD.setFocusable(true);
         pDanhMuc.setFocusable(true);
         pSanPham.setFocusable(true);
         pDoanhThu.setFocusable(true);
         pNhanVien.setFocusable(true);
-        pQuanLy.setFocusable(true);
+        pQuanLyKH.setFocusable(true);
         pNhaCC.setFocusable(true);
         pTaiKhoan.setFocusable(true);
         pDangXuat.setFocusable(true);
-        
+        pPhieuNhap.setFocusable(true);
+
         pHoaDon.add(lHoaDon);
         pChiTietHD.add(lChiTietHD);
         pDanhMuc.add(lDanhMuc);
         pSanPham.add(lSanPham);
         pDoanhThu.add(lDoanhThu);
         pNhanVien.add(lNhanVien);
-        pQuanLy.add(lQuanLy);
+        pQuanLyKH.add(lQuanLyKH);
         pNhaCC.add(lNhaCC);
         pTaiKhoan.add(lTaiKhoan);
         pDangXuat.add(lDangXuat);
-        
-        
-        
+        pPhieuNhap.add(lPhieuNhap);
+
         Pane_cover.add(MenuPanel);
         Pane_cover.add(Pane_content);
         this.add(Pane_cover);
-        
+
     }
 
     // Variables declaration - do not modify 
-    public javax.swing.JPanel MenuPanel;
-    public javax.swing.JPanel Pane_cover;
-    public javax.swing.JPanel Pane_content;
     public javax.swing.JLabel lChiTietHD;
     public javax.swing.JLabel lDanhMuc;
     public javax.swing.JLabel lDoanhThu;
@@ -480,9 +512,11 @@ public class TrangChu extends JFrame{
     public javax.swing.JLabel lNhaCC;
     public javax.swing.JLabel lNhanVien;
     public javax.swing.JLabel lSanPham;
-    public javax.swing.JLabel lQuanLy;
+    public javax.swing.JLabel lQuanLyKH;
     public javax.swing.JLabel lTaiKhoan;
     public javax.swing.JLabel lDangXuat;
+    public javax.swing.JLabel lPhieuNhap;
+    public javax.swing.JLabel lTenTK;
     public javax.swing.JPanel pChiTietHD;
     public javax.swing.JPanel pDanhMuc;
     public javax.swing.JPanel pDoanhThu;
@@ -490,43 +524,46 @@ public class TrangChu extends JFrame{
     public javax.swing.JPanel pNhaCC;
     public javax.swing.JPanel pNhanVien;
     public javax.swing.JPanel pSanPham;
-    public javax.swing.JPanel pQuanLy;
+    public javax.swing.JPanel pQuanLyKH;
     public javax.swing.JPanel pTaiKhoan;
     public javax.swing.JPanel pDangXuat;
+    public javax.swing.JPanel pPhieuNhap;
+    public javax.swing.JPanel MenuPanel;
+    public javax.swing.JPanel Pane_cover;
+    public javax.swing.JPanel Pane_content;
     // End of variables declaration                   
 
-  
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new TrangChu("Kahng").setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                new TrangChu("Kahng").setVisible(true);
+//            }
+//        });
+//    }
 }

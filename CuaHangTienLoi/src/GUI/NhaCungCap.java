@@ -187,6 +187,7 @@ public class NhaCungCap extends javax.swing.JPanel {
         ));
         table_ncc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         table_ncc.setOpaque(false);
+        table_ncc.setShowGrid(true);
         table_ncc.getTableHeader().setResizingAllowed(false);
         table_ncc.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(table_ncc);

@@ -322,6 +322,7 @@ public class NhanVienView extends javax.swing.JPanel {
             }
         ));
         table_nv.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        table_nv.setShowGrid(true);
         table_nv.getTableHeader().setResizingAllowed(false);
         table_nv.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(table_nv);

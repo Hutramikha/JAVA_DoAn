@@ -232,6 +232,7 @@ public class SanPhamView extends javax.swing.JPanel {
 
             }
         ));
+        table_sp.setShowGrid(true);
         table_sp.getTableHeader().setResizingAllowed(false);
         table_sp.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(table_sp);
@@ -701,7 +702,7 @@ public class SanPhamView extends javax.swing.JPanel {
     public javax.swing.JButton btn_sua;
     public javax.swing.JButton btn_them;
     public javax.swing.JButton btn_xoa;
-    private javax.swing.JComboBox<String> combobox_search;
+    public javax.swing.JComboBox<String> combobox_search;
     public javax.swing.JTextField dongia_sp;
     private javax.swing.JLabel image_label;
     private javax.swing.JInternalFrame jInternalFrame1;

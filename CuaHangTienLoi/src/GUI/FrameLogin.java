@@ -161,15 +161,18 @@ public class FrameLogin extends javax.swing.JFrame {
                         TrangChu tc = new TrangChu(username);
                         username_dn.setText("");
                         pass_dn.setText("");
-                        this.dispose();
+                        dispose();
                         tc.setVisible(true);
                     }
                     case 1 -> {
                         TrangChu tc = new TrangChu(username);
                         username_dn.setText("");
                         pass_dn.setText("");
-                        this.dispose();
+                        dispose();
                         tc.setVisible(true);
+                    }
+                    case 2 -> {
+                        return;
                     }
                     default -> JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu không chính xác !!!");
                 }

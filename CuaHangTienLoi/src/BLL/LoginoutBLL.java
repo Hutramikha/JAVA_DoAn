@@ -30,6 +30,10 @@ public class LoginoutBLL{
                 JOptionPane.showMessageDialog(logView, "Đăng nhập thành công quyền nhân viên thu ngân");
                 return 1;
             }
+            case 2 -> {
+                JOptionPane.showMessageDialog(logView, "Tài khoản đã bị khóa");
+                return 2;
+            }
             default -> {
                 JOptionPane.showMessageDialog(logView, "Đăng nhập thất bại");
                 return -1;

@@ -260,6 +260,7 @@ public class KhachHangView extends javax.swing.JPanel {
         ));
         table_kh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         table_kh.setOpaque(false);
+        table_kh.setShowGrid(true);
         table_kh.getTableHeader().setResizingAllowed(false);
         table_kh.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(table_kh);

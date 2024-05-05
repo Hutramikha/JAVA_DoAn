@@ -64,9 +64,24 @@ public class DALuser implements DALinterface<user>{
 
     @Override
     public int update(user t) {
- 
-        return 0;
- 
+        int kq = 0;
+        try {
+            Connection con = Connect.getConnection();
+            String sql = "UPDATE login "
+                    + "SET "
+                    + "status=? "
+                    + "WHERE username = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, t.getStatus());
+            pst.setString(2, t.getUsername());
+
+            kq = pst.executeUpdate();
+
+            Connect.closeConnection(con);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return kq;
     }
 
     @Override

@@ -242,8 +242,9 @@ public class DanhMuc extends javax.swing.JPanel {
             }
         ));
         table_danhmuc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        table_danhmuc.setGridColor(new java.awt.Color(255, 255, 255));
+        table_danhmuc.setGridColor(new java.awt.Color(0, 0, 0));
         table_danhmuc.setOpaque(false);
+        table_danhmuc.setShowGrid(true);
         table_danhmuc.getTableHeader().setResizingAllowed(false);
         table_danhmuc.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(table_danhmuc);
