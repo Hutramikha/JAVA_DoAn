@@ -551,6 +551,13 @@ public class DanhMuc extends javax.swing.JPanel {
         getTable();
     }//GEN-LAST:event_btn_reset1ActionPerformed
 
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+      String byWhat = (String) combobox_search.getSelectedItem();
+      String keyword = search_dm.getText();
+      clearTable();
+      getTableSearch(keyword , byWhat);
+    }//GEN-LAST:event_btn_searchActionPerformed
+
     private void btn_chonanhChooseImage(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_chonanhChooseImage
         try {
             JFileChooser fchooser = new JFileChooser("D:\\CuaHangTienLoi\\src\\img");
@@ -569,16 +576,9 @@ public class DanhMuc extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btn_chonanhChooseImage
 
-    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
-      String byWhat = (String) combobox_search.getSelectedItem();
-      String keyword = search_dm.getText();
-      clearTable();
-      getTableSearch(keyword , byWhat);
-    }//GEN-LAST:event_btn_searchActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btn_chonanh;
+    private javax.swing.JButton btn_chonanh;
     public javax.swing.JButton btn_luu;
     public javax.swing.JButton btn_reset1;
     public javax.swing.JButton btn_search;

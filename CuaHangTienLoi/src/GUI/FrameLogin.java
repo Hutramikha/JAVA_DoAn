@@ -158,18 +158,16 @@ public class FrameLogin extends javax.swing.JFrame {
                 int status = logbll.CheckStatusBLL(username, password);
                 switch (status) {
                     case 0 -> {
-                        TrangChu tc = new TrangChu(username);
                         username_dn.setText("");
                         pass_dn.setText("");
-                        dispose();
-                        tc.setVisible(true);
+                        setVisible(false);
+                        new TrangChu(username).setVisible(true);
                     }
                     case 1 -> {
-                        TrangChu tc = new TrangChu(username);
                         username_dn.setText("");
                         pass_dn.setText("");
-                        dispose();
-                        tc.setVisible(true);
+                        setVisible(false);
+                        new TrangChu(username).setVisible(true);
                     }
                     case 2 -> {
                         return;

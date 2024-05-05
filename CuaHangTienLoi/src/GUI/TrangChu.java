@@ -8,7 +8,7 @@ import GUI.*;
 import java.awt.CardLayout;
 import java.awt.Cursor;
 
-public class TrangChu extends JFrame {
+public final class TrangChu extends JFrame {
 
     CardLayout cardlayout;
     private boolean isMenuVisible;
@@ -22,8 +22,10 @@ public class TrangChu extends JFrame {
     CTHoaDon ctHDView = new CTHoaDon();
     HELLO helloView = new HELLO();
 
+    
     public TrangChu(String username) {
-        initComponents();
+        initComponents(username);
+        lTenTK.setText("Xin chào: " + username);
     }
 
     public void ClearTableALL() {
@@ -35,7 +37,7 @@ public class TrangChu extends JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    private void initComponents() {
+    private void initComponents(String username) {
         MenuPanel = new javax.swing.JPanel();
         Pane_cover = new javax.swing.JPanel();
         Pane_content = new javax.swing.JPanel();
@@ -75,7 +77,9 @@ public class TrangChu extends JFrame {
         Pane_content.add(hdView, "Hóa Đơn");
         Pane_content.add(ctHDView, "Chi Tiết HĐ");
         
-
+        
+        helloView.hello_field.setText("Mừng trở lại " + username);
+        
         isMenuVisible = false;
         Pane_content.setVisible(isMenuVisible);
 
@@ -110,7 +114,11 @@ public class TrangChu extends JFrame {
         pHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-
+                //                ClearTableALL();
+                isMenuVisible = true;
+                Pane_content.setVisible(isMenuVisible);
+                cardlayout.show(Pane_content, "Hóa Đơn");
+//                spView.getTable();
             }
 
             @Override
@@ -438,7 +446,14 @@ public class TrangChu extends JFrame {
         pDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                // Xử lý sự kiện click cho pHoaDon
+                int confirm = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn đăng xuất");
+                if (confirm == JOptionPane.YES_OPTION) {
+                    setVisible(false);
+                    FrameLogin login = new FrameLogin();
+                    login.setVisible(true);
+                }
+                else {
+                }
             }
 
             @Override
@@ -533,37 +548,37 @@ public class TrangChu extends JFrame {
     public javax.swing.JPanel Pane_content;
     // End of variables declaration                   
 
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                new TrangChu("Kahng").setVisible(true);
-//            }
-//        });
-//    }
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new TrangChu("Kahng").setVisible(true);
+            }
+        });
+    }
 }
