@@ -149,7 +149,7 @@ public class FrameLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_xemPassActionPerformed
 
     private void btn_dnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dnActionPerformed
-        String username = username_dn.getText().trim();
+            String username = username_dn.getText().trim();
             String password = pass_dn.getText().trim();
             if(username.isEmpty() || password.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin");

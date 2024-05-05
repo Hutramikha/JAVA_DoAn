@@ -1,10 +1,7 @@
 package GUI;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
-import GUI.*;
 import java.awt.CardLayout;
 import java.awt.Cursor;
 
@@ -17,6 +14,8 @@ public class TrangChu extends JFrame{
     NhaCungCap nccView = new NhaCungCap();
     DanhMuc dmView = new DanhMuc(); 
     phieuNhap pnView = new phieuNhap();
+    HoaDon hdView = new HoaDon();
+    CTHoaDon ctHDView = new CTHoaDon();
     
     public TrangChu(String username) {
         initComponents();
@@ -60,22 +59,24 @@ public class TrangChu extends JFrame{
         cardlayout = new CardLayout();
         Pane_content.setLayout(cardlayout);
         
+        
         Pane_content.add(nvView,"QL Nhân Viên");
         Pane_content.add(spView,"QL Sản Phẩm");
         Pane_content.add(khView,"QL Khách Hàng");
         Pane_content.add(pnView,"Phiếu Nhập");
         Pane_content.add(nccView,"Nhà Cung Cấp");
         Pane_content.add(dmView,"Danh Mục");
+        Pane_content.add(hdView,"Hóa Đơn");
+        Pane_content.add(ctHDView,"Chi Tiết HĐ");
        
+
+        Pane_content.validate();
+        Pane_content.repaint();
         isMenuVisible = false;
         Pane_content.setVisible(isMenuVisible);
         
         
-        
-        
-   
-        
-        this.setSize(1240,690);
+        this.setSize(1240,700);
         this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
@@ -102,7 +103,11 @@ public class TrangChu extends JFrame{
         pHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                
+//                ClearTableALL();
+                isMenuVisible = true;
+                Pane_content.setVisible(isMenuVisible);
+                cardlayout.show(Pane_content, "Hóa Đơn");
+//                dmView.getTable();
             }
 
             @Override
@@ -132,7 +137,11 @@ public class TrangChu extends JFrame{
         pChiTietHD.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                // Xử lý sự kiện click cho pHoaDon
+//                ClearTableALL();
+                isMenuVisible = true;
+                Pane_content.setVisible(isMenuVisible);
+                cardlayout.show(Pane_content, "Chi Tiết HĐ");
+//                dmView.getTable();
             }
 
             @Override
