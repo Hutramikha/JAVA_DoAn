@@ -17,6 +17,7 @@ public class NhanVienBLL implements BLLinterface<nhanVien> {
         this.nvView = nvView;
     }
 
+    @Override
     public ArrayList<nhanVien> getALL() {
         return dalnv.selectAll();
     }
@@ -84,4 +85,11 @@ public class NhanVienBLL implements BLLinterface<nhanVien> {
             }
         }
     }
+
+    @Override
+    public ArrayList<nhanVien> search(String keyword, String byWhat) {
+        return dalnv.selectByCondition(keyword, byWhat);
+    }
+
+    
 }

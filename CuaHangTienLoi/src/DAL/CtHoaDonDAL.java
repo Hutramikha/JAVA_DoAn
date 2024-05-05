@@ -116,7 +116,7 @@ public class CtHoaDonDAL implements DALinterface<CtHoaDon>{
     }
 
     @Override
-    public ArrayList<CtHoaDon> selectByCondition(String condition) {
+    public ArrayList<CtHoaDon> selectByCondition(String keyword, String byWhat) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

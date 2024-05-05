@@ -129,7 +129,7 @@ public class DALsanPham implements DALinterface<sanPham> {
 
     @Override
     public ArrayList<sanPham> selectAll() {
-         ArrayList<sanPham> sps = new ArrayList<>();
+        ArrayList<sanPham> sps = new ArrayList<>();
         try {
             Connection conn = Connect.getConnection();
             String sql = "select * from sanpham";
@@ -163,8 +163,46 @@ public class DALsanPham implements DALinterface<sanPham> {
     }
 
     @Override
-    public ArrayList<sanPham> selectByCondition(String condition) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<sanPham> selectByCondition(String keyword , String byWhat) {
+        ArrayList<sanPham> sps = new ArrayList<>();
+         try {
+            Connection conn = Connect.getConnection();
+             if (byWhat.equals("Theo mã")) {
+                 String sql = "select * from sanpham where masp like '%' ? '%'";
+                 PreparedStatement pst = conn.prepareStatement(sql);
+                 pst.setString(1, keyword);
+                 ResultSet rs = pst.executeQuery();
+                 while (rs.next()) {
+                     String masp = rs.getString("masp");
+                     String tensp = rs.getString("tensp");
+                     String maloai = rs.getString("maloaisp");
+                     int soluong = rs.getInt("soluong");
+                     long dongia = rs.getLong("dongia");
+                     String img = rs.getString("img");
+                     sanPham sp = new sanPham(masp, tensp, maloai, soluong, dongia, img);
+                     sps.add(sp);
+                 }
+             }else if (byWhat.equals("Theo tên")) {
+                 String sql = "select * from sanpham where tensp like '%' ? '%'";
+                 PreparedStatement pst = conn.prepareStatement(sql);
+                 pst.setString(1, keyword);
+                 ResultSet rs = pst.executeQuery();
+                 while (rs.next()) {
+                     String masp = rs.getString("masp");
+                     String tensp = rs.getString("tensp");
+                     String maloai = rs.getString("maloaisp");
+                     int soluong = rs.getInt("soluong");
+                     long dongia = rs.getLong("dongia");
+                     String img = rs.getString("img");
+                     sanPham sp = new sanPham(masp, tensp, maloai, soluong, dongia, img);
+                     sps.add(sp);
+                 }
+             }
+        Connect.closeConnection(conn);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return sps;
     }
 
 }

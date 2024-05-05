@@ -26,6 +26,7 @@ public class DanhMucBLL implements BLLinterface<danhMuc>{
      
     }
     
+    @Override
     public ArrayList<danhMuc> getALL() {
         return daldm.selectAll();
     }
@@ -93,5 +94,11 @@ public class DanhMucBLL implements BLLinterface<danhMuc>{
             }
         }
     }
+
+    @Override
+    public ArrayList<danhMuc> search(String keyword, String byWhat) {
+       return daldm.selectByCondition(keyword, byWhat);
+    }
+
     
 }

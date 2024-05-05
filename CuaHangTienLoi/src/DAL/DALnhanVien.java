@@ -193,8 +193,67 @@ public class DALnhanVien implements DALinterface<nhanVien> {
     }
 
     @Override
-    public ArrayList<nhanVien> selectByCondition(String condition) {
-        return null;
+    public ArrayList<nhanVien> selectByCondition(String keyword, String byWhat) {
+        ArrayList<nhanVien> nvs = new ArrayList<>();
+         try {
+            Connection conn = Connect.getConnection();
+             if (byWhat.equals("Theo mã")) {
+                 String sql = "select * from nhanvien where manv like '%' ? '%'";
+                 PreparedStatement pst = conn.prepareStatement(sql);
+                 pst.setString(1, keyword);
+                 ResultSet rs = pst.executeQuery();
+                 while (rs.next()) {
+                     String manv = rs.getString("manv");
+                     String ho = rs.getString("ho");
+                     String ten = rs.getString("ten");
+                     String gioitinh = rs.getString("gioitinh");
+                     String sdt = rs.getString("sdt");
+                     String ngaysinh = rs.getString("ngaysinh");
+                     String chucvu = rs.getString("chucvu");
+                     long luong = rs.getLong("luong");
+                     nhanVien nv = new nhanVien(manv, ho, ten, gioitinh, sdt, ngaysinh, chucvu, luong);
+                     nvs.add(nv);
+                 }
+             }else if (byWhat.equals("Theo tên")) {
+                 String sql = "select * from nhanvien where ten like '%' ? '%'";
+                 PreparedStatement pst = conn.prepareStatement(sql);
+                 pst.setString(1, keyword);
+                 ResultSet rs = pst.executeQuery();
+                 while (rs.next()) {
+                     String manv = rs.getString("manv");
+                     String ho = rs.getString("ho");
+                     String ten = rs.getString("ten");
+                     String gioitinh = rs.getString("gioitinh");
+                     String sdt = rs.getString("sdt");
+                     String ngaysinh = rs.getString("ngaysinh");
+                     String chucvu = rs.getString("chucvu");
+                     long luong = rs.getLong("luong");
+                     nhanVien nv = new nhanVien(manv, ho, ten, gioitinh, sdt, ngaysinh, chucvu, luong);
+                     nvs.add(nv);
+                 }
+             } else if(byWhat.equals("Theo họ")) {
+                 String sql = "select * from nhanvien where ho like '%' ? '%'";
+                 PreparedStatement pst = conn.prepareStatement(sql);
+                 pst.setString(1, keyword);
+                 ResultSet rs = pst.executeQuery();
+                 while (rs.next()) {
+                     String manv = rs.getString("manv");
+                     String ho = rs.getString("ho");
+                     String ten = rs.getString("ten");
+                     String gioitinh = rs.getString("gioitinh");
+                     String sdt = rs.getString("sdt");
+                     String ngaysinh = rs.getString("ngaysinh");
+                     String chucvu = rs.getString("chucvu");
+                     long luong = rs.getLong("luong");
+                     nhanVien nv = new nhanVien(manv, ho, ten, gioitinh, sdt, ngaysinh, chucvu, luong);
+                     nvs.add(nv);
+                 }
+             }
+        Connect.closeConnection(conn);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return nvs;
     }
     
 }

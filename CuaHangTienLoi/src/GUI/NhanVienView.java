@@ -122,12 +122,34 @@ public class NhanVienView extends javax.swing.JPanel {
         ma_nv.setText("");
         ho_nv.setText("");
         ten_nv.setText("");
-        gioitinh_nv.setSelectedIndex(0);
+        if (gioitinh_nv.getItemCount() > 0) {
+            gioitinh_nv.setSelectedIndex(0);
+        }
         ngaysinh_nv.setText("");
         sdt_nv.setText("");
         luong_nv.setText("");
         pass_nv.setText("");
-        chucvu_nv.setSelectedIndex(0);
+        if (chucvu_nv.getItemCount() > 0) {
+            chucvu_nv.setSelectedIndex(0);
+        }
+        if (combobox_search.getItemCount() > 0) {
+            combobox_search.setSelectedIndex(0);
+        }
+        search_nv.setText("");
+    }
+    
+    public void getTableSearch(String keyword , String byWhat){
+        list = nvBll.search(keyword, byWhat);
+        try {
+            for (nhanVien row : list) {
+                model.addRow(new Object[]{
+                    row.getManv(), row.getHo(), row.getTen(), row.getGioitinh(), row.getNgaySinh(), row.getSdt(), row.getChucVu(), row.getLuong()
+                });
+            }
+            table_nv.setModel(model);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
     public void Editable() {
@@ -160,8 +182,7 @@ public class NhanVienView extends javax.swing.JPanel {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btn_search = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -187,6 +208,8 @@ public class NhanVienView extends javax.swing.JPanel {
         chucvu_nv = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         pass_nv = new javax.swing.JTextField();
+        combobox_search = new javax.swing.JComboBox<>();
+        search_nv = new javax.swing.JTextField();
 
         jInternalFrame1.setVisible(true);
 
@@ -209,16 +232,18 @@ public class NhanVienView extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Quản Lý Nhân Viên");
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Tìm kiếm");
-        jButton1.setToolTipText("");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_search.setBackground(new java.awt.Color(0, 102, 102));
+        btn_search.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_search.setForeground(new java.awt.Color(255, 255, 255));
+        btn_search.setText("Tìm kiếm");
+        btn_search.setToolTipText("");
+        btn_search.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_search.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_searchActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel2.setText("Mã nhân viên:");
@@ -352,6 +377,9 @@ public class NhanVienView extends javax.swing.JPanel {
         pass_nv.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         pass_nv.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
+        combobox_search.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        combobox_search.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theo mã", "Theo họ", "Theo tên" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -361,15 +389,15 @@ public class NhanVienView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 2, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -405,12 +433,19 @@ public class NhanVienView extends javax.swing.JPanel {
                                                     .addComponent(sdt_nv, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(chucvu_nv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(11, 11, 11)
-                                .addComponent(jLabel11)
+                                                .addComponent(chucvu_nv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(btn_search, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pass_nv, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(pass_nv, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(combobox_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(search_nv, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(24, 24, 24))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -421,18 +456,18 @@ public class NhanVienView extends javax.swing.JPanel {
                                 .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btn_luu, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(combobox_search, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(search_nv, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_search, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(77, 77, 77)
@@ -920,17 +955,25 @@ public class NhanVienView extends javax.swing.JPanel {
         getTable();
     }//GEN-LAST:event_btn_resetActionPerformed
 
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+      String byWhat = (String) combobox_search.getSelectedItem();
+      String keyword = search_nv.getText();
+      clearTable();
+      getTableSearch(keyword , byWhat);
+    }//GEN-LAST:event_btn_searchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_luu;
     public javax.swing.JButton btn_reset;
+    public javax.swing.JButton btn_search;
     public javax.swing.JButton btn_sua;
     public javax.swing.JButton btn_them;
     public javax.swing.JButton btn_xoa;
     public javax.swing.JComboBox<String> chucvu_nv;
+    public javax.swing.JComboBox<String> combobox_search;
     public javax.swing.JComboBox<String> gioitinh_nv;
     public javax.swing.JTextField ho_nv;
-    private javax.swing.JButton jButton1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -943,12 +986,12 @@ public class NhanVienView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     public javax.swing.JTextField luong_nv;
     public javax.swing.JTextField ma_nv;
     public javax.swing.JTextField ngaysinh_nv;
     public javax.swing.JTextField pass_nv;
     public javax.swing.JTextField sdt_nv;
+    public javax.swing.JTextField search_nv;
     public javax.swing.JTable table_nv;
     public javax.swing.JTextField ten_nv;
     // End of variables declaration//GEN-END:variables

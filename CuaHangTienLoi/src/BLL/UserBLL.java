@@ -11,6 +11,7 @@ public class UserBLL implements BLLinterface<user> {
     private NhanVienView nvView;
     private DALuser daluser = new DALuser();
     
+    @Override
     public ArrayList<user> getALL() {
         return daluser.selectAll();
     }
@@ -57,5 +58,11 @@ public class UserBLL implements BLLinterface<user> {
                 System.out.println(ex);
             }
         }
+
+    @Override
+    public ArrayList<user> search(String keyword, String byWhat) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+}
 

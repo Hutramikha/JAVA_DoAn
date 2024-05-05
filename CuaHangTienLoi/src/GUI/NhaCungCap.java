@@ -20,7 +20,7 @@ public class NhaCungCap extends javax.swing.JPanel {
     DefaultTableModel model;
     nhaCungCap ncc = new nhaCungCap();
     private ArrayList<nhaCungCap> list = new ArrayList<>();
-    NhaCungCapBLL khBll = new NhaCungCapBLL(this);
+    NhaCungCapBLL nccBll = new NhaCungCapBLL(this);
     private int count = 0;
     private String matmp, tentmp,tennddtmp, sdttmp, dchitmp;
     public NhaCungCap() {
@@ -78,8 +78,7 @@ public class NhaCungCap extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btn_search = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -97,6 +96,8 @@ public class NhaCungCap extends javax.swing.JPanel {
         btn_reset = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         ten_ndd = new javax.swing.JTextField();
+        combobox_search = new javax.swing.JComboBox<>();
+        search_ncc = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(980, 650));
@@ -106,19 +107,19 @@ public class NhaCungCap extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("QUẢN LÝ NHÀ CUNG CẤP");
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Tìm kiếm");
-        jButton1.setToolTipText("");
-        jButton1.setBorderPainted(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-        jTextField1.setFocusable(false);
-        jTextField1.setOpaque(true);
+        btn_search.setBackground(new java.awt.Color(0, 102, 102));
+        btn_search.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_search.setForeground(new java.awt.Color(255, 255, 255));
+        btn_search.setText("Tìm kiếm");
+        btn_search.setToolTipText("");
+        btn_search.setBorderPainted(false);
+        btn_search.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_search.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_searchActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel2.setText("Mã nhà cung cấp:");
@@ -223,6 +224,9 @@ public class NhaCungCap extends javax.swing.JPanel {
         ten_ndd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ten_ndd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
 
+        combobox_search.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        combobox_search.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theo mã", "Theo tên" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -230,14 +234,7 @@ public class NhaCungCap extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(31, 31, 31)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -245,7 +242,7 @@ public class NhaCungCap extends javax.swing.JPanel {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(ten_ncc, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
@@ -259,7 +256,7 @@ public class NhaCungCap extends javax.swing.JPanel {
                                         .addComponent(ma_ncc, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(193, 193, 193)
                                         .addComponent(sdt_ncc, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addGap(0, 159, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -277,7 +274,16 @@ public class NhaCungCap extends javax.swing.JPanel {
                         .addGap(0, 42, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1)))
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_search, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(combobox_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(search_ncc, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -286,8 +292,9 @@ public class NhaCungCap extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_search, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combobox_search, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search_ncc, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -346,11 +353,25 @@ public class NhaCungCap extends javax.swing.JPanel {
     }
 
     public void getTable() {
-        list = khBll.getALL();
+        list = nccBll.getALL();
         try {
             for (nhaCungCap row : list) {
                 model.addRow(new Object[]{
                     row.getMaNCC(), row.getTenNCC(), row.getTenNDD(), row.getSdt(), row.getDiachi()
+                });
+            }
+            table_ncc.setModel(model);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
+     public void getTableSearch(String keyword , String byWhat){
+        list = nccBll.search(keyword, byWhat);
+        try {
+            for (nhaCungCap row : list) {
+                model.addRow(new Object[]{
+                     row.getMaNCC(), row.getTenNCC(), row.getTenNDD(), row.getSdt(), row.getDiachi()
                 });
             }
             table_ncc.setModel(model);
@@ -365,6 +386,10 @@ public class NhaCungCap extends javax.swing.JPanel {
         ten_ndd.setText("");
         sdt_ncc.setText("");
         dchi_ncc.setText("");
+        search_ncc.setText("");
+        if (combobox_search.getItemCount() > 0) {
+            combobox_search.setSelectedIndex(0);
+        }
     }
 
     public void Editable() {
@@ -419,7 +444,7 @@ public class NhaCungCap extends javax.swing.JPanel {
                 try {
                     ncc = new nhaCungCap(ma, tenncc, tenndd, sdt, diachi);
                     list.add(ncc);
-                    khBll.add(ncc);
+                    nccBll.add(ncc);
                     ResetFieldText();
                     UnEditable();
                     loadTable(list);
@@ -467,7 +492,7 @@ public class NhaCungCap extends javax.swing.JPanel {
 
                 try {
                     ncc = new nhaCungCap(ma, tenncc, tenndd, sdt, diachi);
-                    khBll.update(ncc, matmp);
+                    nccBll.update(ncc, matmp);
                     ResetFieldText();
                     UnEditable();
                     clearTable();
@@ -515,7 +540,7 @@ public class NhaCungCap extends javax.swing.JPanel {
                 if (confirm == JOptionPane.YES_OPTION) {
                     ncc = new nhaCungCap(ma, tenncc,tenndd, sdt, diachi);
                     list.remove(ncc);
-                    khBll.delete(ncc);
+                    nccBll.delete(ncc);
                     ResetFieldText();
                     clearTable();
                     getTable();
@@ -545,15 +570,23 @@ public class NhaCungCap extends javax.swing.JPanel {
         getTable();
     }//GEN-LAST:event_btn_resetActionPerformed
 
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+      String byWhat = (String) combobox_search.getSelectedItem();
+      String keyword = search_ncc.getText();
+      clearTable();
+      getTableSearch(keyword , byWhat);
+    }//GEN-LAST:event_btn_searchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_luu;
     public javax.swing.JButton btn_reset;
+    public javax.swing.JButton btn_search;
     public javax.swing.JButton btn_sua;
     public javax.swing.JButton btn_them;
     public javax.swing.JButton btn_xoa;
+    public javax.swing.JComboBox<String> combobox_search;
     public javax.swing.JTextField dchi_ncc;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -562,9 +595,9 @@ public class NhaCungCap extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     public javax.swing.JTextField ma_ncc;
     public javax.swing.JTextField sdt_ncc;
+    public javax.swing.JTextField search_ncc;
     public javax.swing.JTable table_ncc;
     public javax.swing.JTextField ten_ncc;
     public javax.swing.JTextField ten_ndd;

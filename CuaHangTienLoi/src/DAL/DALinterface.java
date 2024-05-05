@@ -21,5 +21,5 @@ public interface DALinterface <T>{
 	
     public T selectById(String T);
 	
-    public ArrayList<T> selectByCondition(String condition);
+    public ArrayList<T> selectByCondition(String keyword , String byWhat);
 }

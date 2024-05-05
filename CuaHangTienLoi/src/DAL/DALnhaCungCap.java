@@ -176,8 +176,44 @@ public class DALnhaCungCap implements DALinterface<nhaCungCap> {
     }
 
     @Override
-    public ArrayList<nhaCungCap> selectByCondition(String condition) {
-        return null;
+    public ArrayList<nhaCungCap> selectByCondition(String keyword, String byWhat) {
+        ArrayList<nhaCungCap> nccs = new ArrayList<>();
+         try {
+            Connection conn = Connect.getConnection();
+             if (byWhat.equals("Theo mã")) {
+                 String sql = "select * from nhacungcap where mancc like '%' ? '%'";
+                 PreparedStatement pst = conn.prepareStatement(sql);
+                 pst.setString(1, keyword);
+                 ResultSet rs = pst.executeQuery();
+                 while (rs.next()) {
+                    String mancc = rs.getString("mancc");
+                    String tenncc = rs.getString("tenncc");
+                    String tenndd = rs.getString("tenndd");
+                    String sdt = rs.getString("sdt");
+                    String diachi = rs.getString("diachi");
+                    nhaCungCap ncc = new nhaCungCap(mancc,tenncc,tenndd,sdt,diachi);
+                    nccs.add(ncc);
+                 }
+             }else if (byWhat.equals("Theo tên")) {
+                 String sql = "select * from nhacungcap where tenncc like '%' ? '%'";
+                 PreparedStatement pst = conn.prepareStatement(sql);
+                 pst.setString(1, keyword);
+                 ResultSet rs = pst.executeQuery();
+                 while (rs.next()) {
+                    String mancc = rs.getString("mancc");
+                    String tenncc = rs.getString("tenncc");
+                    String tenndd = rs.getString("tenndd");
+                    String sdt = rs.getString("sdt");
+                    String diachi = rs.getString("diachi");
+                    nhaCungCap ncc = new nhaCungCap(mancc,tenncc,tenndd,sdt,diachi);
+                    nccs.add(ncc);
+                 }
+             }
+        Connect.closeConnection(conn);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return nccs;
     }
     
 }

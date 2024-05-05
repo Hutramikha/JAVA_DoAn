@@ -16,6 +16,7 @@ public class KhachHangBLL implements BLLinterface<khachHang>{
         this.khView = khView;
     }
     
+    @Override
     public ArrayList<khachHang> getALL() {
         return dalkh.selectAll();
     }
@@ -83,4 +84,11 @@ public class KhachHangBLL implements BLLinterface<khachHang>{
             }
         }
     }
+
+    @Override
+    public ArrayList<khachHang> search(String keyword, String byWhat) {
+        return dalkh.selectByCondition(keyword, byWhat);
+    }
+
+   
 }

@@ -146,7 +146,7 @@ public class DALuser implements DALinterface<user>{
     }
 
     @Override
-    public ArrayList<user> selectByCondition(String condition) {
+    public ArrayList<user> selectByCondition(String condition, String byWhat) {
        
         return null;
        

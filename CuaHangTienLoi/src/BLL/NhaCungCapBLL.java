@@ -22,6 +22,7 @@ public class NhaCungCapBLL implements BLLinterface<nhaCungCap>{
         this.nccView = ncc;
     }
     
+    @Override
     public ArrayList<nhaCungCap> getALL() {
         return dalncc.selectAll();
     }
@@ -89,5 +90,10 @@ public class NhaCungCapBLL implements BLLinterface<nhaCungCap>{
             }
         }
     }
-    
+
+    @Override
+    public ArrayList<nhaCungCap> search(String keyword, String byWhat) {
+        return dalncc.selectByCondition(keyword, byWhat);
+    }
+
 }

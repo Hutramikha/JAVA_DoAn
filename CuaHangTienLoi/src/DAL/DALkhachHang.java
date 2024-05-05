@@ -168,8 +168,42 @@ public class DALkhachHang implements DALinterface<khachHang> {
     }
 
     @Override
-    public ArrayList<khachHang> selectByCondition(String condition) {
-        return null;
+    public ArrayList<khachHang> selectByCondition(String keyword, String byWhat) {
+        ArrayList<khachHang> khs = new ArrayList<>();
+         try {
+            Connection conn = Connect.getConnection();
+             if (byWhat.equals("Theo mã")) {
+                 String sql = "select * from khachhang where makh like '%' ? '%'";
+                 PreparedStatement pst = conn.prepareStatement(sql);
+                 pst.setString(1, keyword);
+                 ResultSet rs = pst.executeQuery();
+                 while (rs.next()) {
+                    String makh = rs.getString("makh");
+                    String ten = rs.getString("ten");
+                    String sdt = rs.getString("sdt");
+                    String email = rs.getString("email");
+                    khachHang kh = new khachHang(makh,ten,sdt,email);
+                    khs.add(kh);
+                 }
+             }else if (byWhat.equals("Theo tên")) {
+                 String sql = "select * from khachhang where ten like '%' ? '%'";
+                 PreparedStatement pst = conn.prepareStatement(sql);
+                 pst.setString(1, keyword);
+                 ResultSet rs = pst.executeQuery();
+                 while (rs.next()) {
+                    String makh = rs.getString("makh");
+                    String ten = rs.getString("ten");
+                    String sdt = rs.getString("sdt");
+                    String email = rs.getString("email");
+                    khachHang kh = new khachHang(makh,ten,sdt,email);
+                    khs.add(kh);
+                 }
+             }
+        Connect.closeConnection(conn);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return khs;
     }
     
 }

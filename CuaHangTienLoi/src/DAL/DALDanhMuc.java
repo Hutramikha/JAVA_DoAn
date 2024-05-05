@@ -77,7 +77,7 @@ public class DALdanhMuc implements DALinterface<danhMuc> {
                     + ",img=? "
                     + "WHERE maloai = ?";
             PreparedStatement pst = con.prepareStatement(sql);
-           pst.setString(1, t.getMaloai());
+            pst.setString(1, t.getMaloai());
             pst.setString(2, t.getTenloai());
             pst.setString(3, t.getImg());
             pst.setString(4, maOld);
@@ -115,7 +115,7 @@ public class DALdanhMuc implements DALinterface<danhMuc> {
 
     @Override
     public ArrayList<danhMuc> selectAll() {
-        ArrayList<danhMuc> nccs = new ArrayList<>();
+        ArrayList<danhMuc> dms = new ArrayList<>();
         try {
             Connection conn = Connect.getConnection();
             String sql = "select * from danhmuc";
@@ -125,14 +125,14 @@ public class DALdanhMuc implements DALinterface<danhMuc> {
                 String maloai = rs.getString("maloai");
                 String tenloai = rs.getString("tenloai");
                 String img = rs.getString("img");
-                danhMuc ncc = new danhMuc(maloai,tenloai,img);
-                nccs.add(ncc);
+                danhMuc dm = new danhMuc(maloai,tenloai,img);
+                dms.add(dm);
             }
             Connect.closeConnection(conn);
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return nccs;
+        return dms;
     }
 
     @Override
@@ -163,8 +163,40 @@ public class DALdanhMuc implements DALinterface<danhMuc> {
     }
 
     @Override
-    public ArrayList<danhMuc> selectByCondition(String condition) {
-        return null;
+    public ArrayList<danhMuc> selectByCondition(String keyword, String byWhat) {
+        ArrayList<danhMuc> dms = new ArrayList<>();
+         try {
+            Connection conn = Connect.getConnection();
+             if (byWhat.equals("Theo mã")) {
+                 String sql = "select * from danhmuc where maloai like '%' ? '%'";
+                 PreparedStatement pst = conn.prepareStatement(sql);
+                 pst.setString(1, keyword);
+                 ResultSet rs = pst.executeQuery();
+                 while (rs.next()) {
+                    String maloai = rs.getString("maloai");
+                    String tenloai = rs.getString("tenloai");
+                    String img = rs.getString("img");
+                    danhMuc dm = new danhMuc(maloai,tenloai,img);
+                    dms.add(dm);
+                 }
+             }else if (byWhat.equals("Theo tên")) {
+                 String sql = "select * from danhmuc where tenloai like '%' ? '%'";
+                 PreparedStatement pst = conn.prepareStatement(sql);
+                 pst.setString(1, keyword);
+                 ResultSet rs = pst.executeQuery();
+                 while (rs.next()) {
+                    String maloai = rs.getString("maloai");
+                    String tenloai = rs.getString("tenloai");
+                    String img = rs.getString("img");
+                    danhMuc dm = new danhMuc(maloai,tenloai,img);
+                    dms.add(dm);
+                 }
+             }
+        Connect.closeConnection(conn);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return dms;
     }
     
 }

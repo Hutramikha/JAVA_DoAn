@@ -166,7 +166,7 @@ public class HoaDonDAL implements DALinterface<HoaDon>{
     }
 
     @Override
-    public ArrayList<HoaDon> selectByCondition(String condition) {
+    public ArrayList<HoaDon> selectByCondition(String keyword, String byWhat) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

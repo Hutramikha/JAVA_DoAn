@@ -16,6 +16,7 @@ public class SanPhamBLL implements BLLinterface<sanPham>{
         this.spView = spView;
     }
      
+    @Override
      public ArrayList<sanPham> getALL() {
         return dalsp.selectAll();
     }
@@ -82,5 +83,10 @@ public class SanPhamBLL implements BLLinterface<sanPham>{
                 System.out.println(ex);
             }
         }
+    }
+
+    @Override
+    public ArrayList<sanPham> search(String keyword, String byWhat) {
+        return dalsp.selectByCondition(keyword, byWhat);
     }
 }
