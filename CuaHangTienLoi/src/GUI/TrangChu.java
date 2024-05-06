@@ -1,10 +1,7 @@
 package GUI;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
-import GUI.*;
 import java.awt.CardLayout;
 import java.awt.Cursor;
 
@@ -21,11 +18,13 @@ public final class TrangChu extends JFrame {
     HoaDon hdView = new HoaDon();
     CTHoaDon ctHDView = new CTHoaDon();
     HELLO helloView = new HELLO();
+    XemThongTin ttView = new XemThongTin();
 
     
     public TrangChu(String username) {
-        initComponents(username);
+        initComponents();
         lTenTK.setText("Xin chào: " + username);
+        helloView.hello_field.setText("Mừng trở lại " + username);
     }
 
     public void ClearTableALL() {
@@ -37,7 +36,7 @@ public final class TrangChu extends JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    private void initComponents(String username) {
+    private void initComponents() {
         MenuPanel = new javax.swing.JPanel();
         Pane_cover = new javax.swing.JPanel();
         Pane_content = new javax.swing.JPanel();
@@ -64,10 +63,12 @@ public final class TrangChu extends JFrame {
         pPhieuNhap = new javax.swing.JPanel();
         lPhieuNhap = new javax.swing.JLabel();
         lTenTK = new javax.swing.JLabel();
+        
 
         cardlayout = new CardLayout();
         Pane_content.setLayout(cardlayout);
-
+        
+        Pane_content.add(helloView, "hello");
         Pane_content.add(nvView, "QL Nhân Viên");
         Pane_content.add(spView, "QL Sản Phẩm");
         Pane_content.add(khView, "QL Khách Hàng");
@@ -76,13 +77,13 @@ public final class TrangChu extends JFrame {
         Pane_content.add(dmView, "Danh Mục");
         Pane_content.add(hdView, "Hóa Đơn");
         Pane_content.add(ctHDView, "Chi Tiết HĐ");
+        Pane_content.add(ttView, "Tài Khoản");
         
         
-        helloView.hello_field.setText("Mừng trở lại " + username);
-        
-        isMenuVisible = false;
+        isMenuVisible = true;
         Pane_content.setVisible(isMenuVisible);
-
+        
+        
         this.setSize(1240, 690);
         this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -417,7 +418,9 @@ public final class TrangChu extends JFrame {
         pTaiKhoan.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                // Xử lý sự kiện click cho pHoaDon
+                isMenuVisible = true;
+                Pane_content.setVisible(isMenuVisible);
+                cardlayout.show(Pane_content, "Tài Khoản");
             }
 
             @Override
@@ -548,37 +551,37 @@ public final class TrangChu extends JFrame {
     public javax.swing.JPanel Pane_content;
     // End of variables declaration                   
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new TrangChu("Kahng").setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                new TrangChu("Kahng").setVisible(true);
+//            }
+//        });
+//    }
 }
