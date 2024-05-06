@@ -132,7 +132,7 @@ public class DALuser implements DALinterface<user>{
 
     @Override
     public user selectById(user t) {
-      user user = new user() {};
+      user user = new user();
         try {
             Connection con = Connect.getConnection();
             String sql = "select * from login where username = ? and password = ?";
@@ -154,10 +154,25 @@ public class DALuser implements DALinterface<user>{
     }
 
     @Override
-    public user selectById(String T) {
-        
-        return null;
-        
+    public user selectById(String ma) {
+        user user = new user();
+        try {
+            Connection con = Connect.getConnection();
+            String sql = "select * from login where username = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, ma);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                int status = rs.getInt("status");
+                user = new user(username, password, status) {};
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
     @Override

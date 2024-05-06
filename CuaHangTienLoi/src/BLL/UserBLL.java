@@ -11,6 +11,10 @@ public class UserBLL implements BLLinterface<user> {
     private NhanVienView nvView;
     private DALuser daluser = new DALuser();
     
+    public user getOne(String ma){
+        return daluser.selectById(ma);
+    }
+    
     @Override
     public ArrayList<user> getALL() {
         return daluser.selectAll();

@@ -144,7 +144,8 @@ public class FrameLogin extends javax.swing.JFrame {
         if(xemPass.isSelected()) {
             pass_dn.setEchoChar((char)0);
         } else {
-            pass_dn.setEchoChar('\u25cf');
+            pass_dn.setEchoChar('*');
+            //\u25cf
         }
     }//GEN-LAST:event_xemPassActionPerformed
 
@@ -167,7 +168,10 @@ public class FrameLogin extends javax.swing.JFrame {
                         username_dn.setText("");
                         pass_dn.setText("");
                         setVisible(false);
-                        new TrangChu(username).setVisible(true);
+                        TrangChu tc = new TrangChu(username);
+                        tc.setVisible(true);
+                        tc.lNhanVien.setEnabled(false);
+                        tc.lDoanhThu.setEnabled(false);
                     }
                     case 2 -> {
                         return;

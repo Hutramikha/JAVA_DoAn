@@ -619,8 +619,7 @@ public class NhanVienView extends javax.swing.JPanel {
                         }
                         status = 1;
                         nv = new nhanVien(ma, ho, ten, gioitinh, sdt, ngaysinh, chucvu, luong);
-                        user = new user(ma, pass, status) {
-                        };
+                        user = new user(ma, pass, status);
                         list.add(nv);
                         nvBll.add(nv);
                         userBll.add(user);
@@ -769,8 +768,7 @@ public class NhanVienView extends javax.swing.JPanel {
                             }
                             try {
                                 nv = new nhanVien(ma, ho, ten, gioitinh, sdt, ngaysinh, chucvu, luong);
-                                user = new user(ma, pass, status) {
-                                };
+                                user = new user(ma, pass, status);
                                 nvBll.update(nv, matmp);
                                 userBll.add(user);
                                 ResetFieldText();
@@ -816,8 +814,7 @@ public class NhanVienView extends javax.swing.JPanel {
                             }
                             try {
                                 nv = new nhanVien(ma, ho, ten, gioitinh, sdt, ngaysinh, chucvu, luong);
-                                user = new user(ma, pass, status) {
-                                };
+                                user = new user(ma, pass, status);
                                 nvBll.update(nv, matmp);
                                 userBll.add(user);
                                 ResetFieldText();

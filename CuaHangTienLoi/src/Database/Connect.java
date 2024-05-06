@@ -46,10 +46,10 @@ public class Connect {
         }
     }
 
-    public static void main(String[] args) {
-        Connection c = Connect.getConnection();
-
-        Connect.printInfo(c);
-        Connect.closeConnection(c);
-    }
+//    public static void main(String[] args) {
+//        Connection c = Connect.getConnection();
+//
+//        Connect.printInfo(c);
+//        Connect.closeConnection(c);
+//    }
 }

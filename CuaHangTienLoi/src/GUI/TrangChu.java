@@ -5,8 +5,8 @@ import javax.swing.*;
 import java.awt.CardLayout;
 import java.awt.Cursor;
 import BLL.NhanVienBLL;
-import java.util.*;
-import DTO.nhanVien;
+import BLL.UserBLL;
+import DTO.*;
 
 public final class TrangChu extends JFrame {
 
@@ -24,13 +24,16 @@ public final class TrangChu extends JFrame {
     XemThongTin ttView = new XemThongTin();
     
     NhanVienBLL nvBLL = new NhanVienBLL(null);
+    UserBLL userBLL = new UserBLL();
     nhanVien nv = new nhanVien();
+    user user = new user();
 
     
     public TrangChu(String username) {
         initComponents();
         lTenTK.setText("Xin chào: " + username);
         helloView.hello_field.setText("Mừng trở lại " + username);
+        
         nv = nvBLL.getOne(username);
         ttView.ma_nv.setText(nv.getManv());
         ttView.ho_nv.setText(nv.getHo());
@@ -41,6 +44,9 @@ public final class TrangChu extends JFrame {
         ttView.chucvu_nv.setText(nv.getChucVu());
         String luongTxt = String.valueOf(nv.getLuong());
         ttView.luong_nv.setText(luongTxt);
+        
+        user = userBLL.getOne(username);
+        ttView.pass_nv.setText(user.getPassword());
     }
 
     public void ClearTableALL() {
@@ -300,11 +306,15 @@ public final class TrangChu extends JFrame {
         pNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ClearTableALL();
-                isMenuVisible = true;
-                Pane_content.setVisible(isMenuVisible);
-                cardlayout.show(Pane_content, "QL Nhân Viên");
-                nvView.getTable();
+                if (user.getStatus() == 0) {
+                    ClearTableALL();
+                    isMenuVisible = true;
+                    Pane_content.setVisible(isMenuVisible);
+                    cardlayout.show(Pane_content, "QL Nhân Viên");
+                    nvView.getTable();
+                } else {
+
+                }
             }
 
             @Override

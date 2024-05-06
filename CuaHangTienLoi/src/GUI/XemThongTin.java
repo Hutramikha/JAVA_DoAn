@@ -4,17 +4,50 @@
  */
 package GUI;
 
+import javax.swing.JOptionPane;
+import DTO.*;
+import BLL.*;
+
 /**
  *
  * @author ACER
  */
 public class XemThongTin extends javax.swing.JPanel {
 
-    /**
-     * Creates new form XemThongTin
-     */
+     
+    private String sdttmp;
+    private String passtmp;
+    
+    private String ma;
+    private String ho;
+    private String ten;
+    private String gioitinh;
+    private String ngaysinh;
+    private String chucvu;
+    private String luong;
+    private nhanVien nv;
+    private user user;
+    
+    NhanVienBLL nvBLL = new NhanVienBLL(null);
+    UserBLL userBLL = new UserBLL();
+    
     public XemThongTin() {
         initComponents();
+       
+        
+        ma_nv.setEditable(false);
+        ho_nv.setEditable(false);
+        ten_nv.setEditable(false);
+        gioitinh_nv.setEditable(false);
+        sdt_nv.setEditable(false);
+        ngaysinh_nv.setEditable(false);
+        chucvu_nv.setEditable(false);
+        luong_nv.setEditable(false);
+        pass_nv.setEditable(false);
+        
+        
+        btn_xacnhan_sdt.setEnabled(false);
+        btn_xacnhan_pass.setEnabled(false);
     }
 
     /**
@@ -45,9 +78,11 @@ public class XemThongTin extends javax.swing.JPanel {
         chucvu_nv = new javax.swing.JTextField();
         luong_nv = new javax.swing.JTextField();
         pass_nv = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_sua_pass = new javax.swing.JButton();
+        btn_sua_sdt = new javax.swing.JButton();
+        xemPass = new javax.swing.JCheckBox();
+        btn_xacnhan_sdt = new javax.swing.JButton();
+        btn_xacnhan_pass = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -79,14 +114,61 @@ public class XemThongTin extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel9.setText("Lương:");
 
+        ma_nv.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel11.setText("Mật khẩu:");
 
-        jButton1.setText("Đổi");
+        ho_nv.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jButton2.setText("Đổi");
+        ten_nv.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jButton3.setText("Đổi");
+        gioitinh_nv.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        sdt_nv.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        ngaysinh_nv.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        chucvu_nv.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        luong_nv.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        pass_nv.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        btn_sua_pass.setText("Đổi");
+        btn_sua_pass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_sua_passActionPerformed(evt);
+            }
+        });
+
+        btn_sua_sdt.setText("Đổi");
+        btn_sua_sdt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_sua_sdtActionPerformed(evt);
+            }
+        });
+
+        xemPass.setText("Xem mật khẩu");
+        xemPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xemPassActionPerformed(evt);
+            }
+        });
+
+        btn_xacnhan_sdt.setText("Xác nhận");
+        btn_xacnhan_sdt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xacnhan_sdtActionPerformed(evt);
+            }
+        });
+
+        btn_xacnhan_pass.setText("Xác nhận");
+        btn_xacnhan_pass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xacnhan_passActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -127,15 +209,22 @@ public class XemThongTin extends javax.swing.JPanel {
                                 .addComponent(ma_nv, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))))
-                .addContainerGap(150, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_sua_sdt)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_xacnhan_sdt))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_sua_pass)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_xacnhan_pass)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(xemPass)))))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -157,12 +246,12 @@ public class XemThongTin extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(sdt_nv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(btn_sua_sdt)
+                    .addComponent(btn_xacnhan_sdt))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(ngaysinh_nv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(ngaysinh_nv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -175,19 +264,111 @@ public class XemThongTin extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(pass_nv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(116, Short.MAX_VALUE))
+                    .addComponent(btn_sua_pass)
+                    .addComponent(xemPass)
+                    .addComponent(btn_xacnhan_pass))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void xemPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xemPassActionPerformed
+         if(xemPass.isSelected()) {
+            pass_nv.setEchoChar((char)0);
+        } else {
+            pass_nv.setEchoChar('*');
+        }
+    }//GEN-LAST:event_xemPassActionPerformed
+
+    private void btn_sua_sdtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sua_sdtActionPerformed
+        ma = ma_nv.getText();
+        ho = ho_nv.getText();
+        ten = ten_nv.getText();
+        gioitinh = gioitinh_nv.getText();
+        ngaysinh = ngaysinh_nv.getText();
+        chucvu = chucvu_nv.getText();
+        luong = luong_nv.getText();
+        
+        
+        sdt_nv.setEditable(true);
+        sdt_nv.grabFocus();
+        btn_sua_sdt.setEnabled(false);
+        btn_xacnhan_sdt.setEnabled(true);
+        sdttmp = sdt_nv.getText();
+    }//GEN-LAST:event_btn_sua_sdtActionPerformed
+
+    private void btn_sua_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sua_passActionPerformed
+        ma = ma_nv.getText();
+        
+        pass_nv.setEditable(true);
+        pass_nv.grabFocus();
+        btn_xacnhan_pass.setEnabled(true);
+        passtmp = pass_nv.getText();
+    }//GEN-LAST:event_btn_sua_passActionPerformed
+
+    private void btn_xacnhan_sdtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xacnhan_sdtActionPerformed
+        String sdt = sdt_nv.getText().trim();
+        if (sdttmp.equals(sdt)) {
+            int confirm = JOptionPane.showConfirmDialog(this, "Số điện thoại không có thay đổi, bạn có muốn tiếp tục ?");
+            if (confirm == JOptionPane.YES_OPTION) {
+                return;
+            } else {
+                btn_xacnhan_sdt.setEnabled(false);
+                btn_sua_sdt.setEnabled(true);
+                return;
+            }
+        }
+
+        if (!sdt.matches("^0\\d{9}$")) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ");
+            return;
+        }
+
+        try {
+            Long luongl = Long.valueOf(luong);
+            nv = new nhanVien(ma, ho, ten, gioitinh, sdt, ngaysinh, chucvu, luongl);
+            nvBLL.update(nv, ma);
+            btn_xacnhan_sdt.setEnabled(false);
+            btn_sua_sdt.setEnabled(true);
+            sdt_nv.setText(sdt);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_btn_xacnhan_sdtActionPerformed
+
+    private void btn_xacnhan_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xacnhan_passActionPerformed
+        String password = pass_nv.getText().trim();
+        
+        if (passtmp.equals(password)) {
+            int confirm = JOptionPane.showConfirmDialog(this, "Mật khẩu không có thay đổi, bạn có muốn tiếp tục ?");
+            if (confirm == JOptionPane.YES_OPTION) {
+                return;
+            } else {
+                btn_xacnhan_pass.setEnabled(false);
+                btn_sua_pass.setEnabled(true);
+                return;
+            }
+        }
+        
+        try {
+            user = new user(ma, password);
+            userBLL.update(user, ma);
+            btn_xacnhan_pass.setEnabled(false);
+            btn_sua_pass.setEnabled(true);
+            pass_nv.setText(password);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_btn_xacnhan_passActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_sua_pass;
+    private javax.swing.JButton btn_sua_sdt;
+    public javax.swing.JButton btn_xacnhan_pass;
+    public javax.swing.JButton btn_xacnhan_sdt;
     public javax.swing.JTextField chucvu_nv;
     public javax.swing.JTextField gioitinh_nv;
     public javax.swing.JTextField ho_nv;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -204,5 +385,6 @@ public class XemThongTin extends javax.swing.JPanel {
     public javax.swing.JPasswordField pass_nv;
     public javax.swing.JTextField sdt_nv;
     public javax.swing.JTextField ten_nv;
+    private javax.swing.JCheckBox xemPass;
     // End of variables declaration//GEN-END:variables
 }
