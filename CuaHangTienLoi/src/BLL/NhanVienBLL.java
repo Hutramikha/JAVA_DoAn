@@ -16,6 +16,10 @@ public class NhanVienBLL implements BLLinterface<nhanVien> {
     public NhanVienBLL(NhanVienView nvView) {
         this.nvView = nvView;
     }
+    
+    public nhanVien getOne(String ma){
+        return dalnv.selectById(ma);
+    }
 
     @Override
     public ArrayList<nhanVien> getALL() {

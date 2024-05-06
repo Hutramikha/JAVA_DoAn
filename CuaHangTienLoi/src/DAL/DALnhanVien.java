@@ -188,8 +188,30 @@ public class DALnhanVien implements DALinterface<nhanVien> {
     }
 
     @Override
-    public nhanVien selectById(String T) {
-        return null;
+    public nhanVien selectById(String ma) {
+        nhanVien nv = new nhanVien();
+        try {
+            Connection con = Connect.getConnection();
+            String sql = "select * from nhanvien where manv = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1,ma);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                String manv = rs.getString("manv");
+                String ho = rs.getString("ho");
+                String ten = rs.getString("ten");
+                String gioitinh = rs.getString("gioitinh");
+                String sdt = rs.getString("sdt");
+                String ngaysinh = rs.getString("ngaysinh");
+                String chucvu = rs.getString("chucvu");
+                long luong = rs.getLong("luong");
+                nv = new nhanVien(manv,ho,ten,gioitinh,sdt,ngaysinh,chucvu,luong);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return nv;
     }
 
     @Override

@@ -4,6 +4,9 @@ import java.awt.Color;
 import javax.swing.*;
 import java.awt.CardLayout;
 import java.awt.Cursor;
+import BLL.NhanVienBLL;
+import java.util.*;
+import DTO.nhanVien;
 
 public final class TrangChu extends JFrame {
 
@@ -19,12 +22,25 @@ public final class TrangChu extends JFrame {
     CTHoaDon ctHDView = new CTHoaDon();
     HELLO helloView = new HELLO();
     XemThongTin ttView = new XemThongTin();
+    
+    NhanVienBLL nvBLL = new NhanVienBLL(null);
+    nhanVien nv = new nhanVien();
 
     
     public TrangChu(String username) {
         initComponents();
         lTenTK.setText("Xin chào: " + username);
         helloView.hello_field.setText("Mừng trở lại " + username);
+        nv = nvBLL.getOne(username);
+        ttView.ma_nv.setText(nv.getManv());
+        ttView.ho_nv.setText(nv.getHo());
+        ttView.ten_nv.setText(nv.getTen());
+        ttView.gioitinh_nv.setText(nv.getGioitinh());
+        ttView.sdt_nv.setText(nv.getSdt());
+        ttView.ngaysinh_nv.setText(nv.getNgaySinh());
+        ttView.chucvu_nv.setText(nv.getChucVu());
+        String luongTxt = String.valueOf(nv.getLuong());
+        ttView.luong_nv.setText(luongTxt);
     }
 
     public void ClearTableALL() {
