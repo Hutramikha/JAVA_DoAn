@@ -48,19 +48,11 @@ public class DALsanPham implements DALinterface<sanPham> {
             Connection con = Connect.getConnection();
             String sql = "UPDATE sanpham "
                     + "SET "
-                    + "tensp=? "
-                    + ",maloaisp=? "
-                    + ",soluong=? "
-                    + ",dongia=? "
-                    + ",img=?"
+                    + "soluong=? "
                     + "WHERE masp = ?";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, t.getTensp());
-            pst.setString(2, t.getMaloaisp());
-            pst.setInt(3, t.getSoluong());
-            pst.setLong(4, t.getDongia());
-            pst.setString(5, t.getImg());
-            pst.setString(6, t.getMasp());
+            pst.setInt(1, t.getSoluong());
+            pst.setString(2, t.getMasp());
 
             ketqua = pst.executeUpdate();
 
@@ -134,6 +126,31 @@ public class DALsanPham implements DALinterface<sanPham> {
             Connection conn = Connect.getConnection();
             String sql = "select * from sanpham";
             PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                String masp = rs.getString("masp");
+                String tensp = rs.getString("tensp");
+                String maloai = rs.getString("maloaisp");
+                int soluong = rs.getInt("soluong");
+                long dongia = rs.getLong("dongia");
+                String img = rs.getString("img");
+                sanPham sp = new sanPham(masp,tensp,maloai,soluong,dongia,img);
+                sps.add(sp);
+            }
+            Connect.closeConnection(conn);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return sps;
+    }
+    
+    public ArrayList<sanPham> selectAll(String maLoai) {
+        ArrayList<sanPham> sps = new ArrayList<>();
+        try {
+            Connection conn = Connect.getConnection();
+            String sql = "select * from sanpham where maloaisp=?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, maLoai);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 String masp = rs.getString("masp");

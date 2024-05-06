@@ -4,30 +4,32 @@
  */
 package DTO;
 
-/**
- *
- * @author votru
- */
-public class CtHoaDon {
-    private int mahd;
-    private int masp;
-    private int soluong;
-    private int dongia;
-    private int thanhtien;
 
-    public CtHoaDon(int mahd, int masp, int soluong, int dongia, int thanhtien) {
+public class CtHoaDon {
+    private String mahd;
+    private String masp;
+    private String tensp;
+    private int soluong;
+    private long dongia;
+    private long thanhtien;
+    
+    public CtHoaDon() {
+    }
+
+    public CtHoaDon(String mahd, String masp, String tensp  ,int soluong, long dongia, long thanhtien) {
         this.mahd = mahd;
         this.masp = masp;
+        this.tensp = tensp;
         this.soluong = soluong;
         this.dongia = dongia;
         this.thanhtien = thanhtien;
     }
 
-    public int getMahd() {
+    public String getMahd() {
         return mahd;
     }
 
-    public int getMasp() {
+    public String getMasp() {
         return masp;
     }
 
@@ -35,19 +37,19 @@ public class CtHoaDon {
         return soluong;
     }
 
-    public int getDongia() {
+    public long getDongia() {
         return dongia;
     }
 
-    public int getThanhtien() {
+    public long getThanhtien() {
         return thanhtien;
     }
 
-    public void setMahd(int mahd) {
+    public void setMahd(String mahd) {
         this.mahd = mahd;
     }
 
-    public void setMasp(int masp) {
+    public void setMasp(String masp) {
         this.masp = masp;
     }
 
@@ -55,19 +57,27 @@ public class CtHoaDon {
         this.soluong = soluong;
     }
 
-    public void setDongia(int dongia) {
+    public void setDongia(long dongia) {
         this.dongia = dongia;
     }
 
-    public void setThanhtien(int thanhtien) {
+    public void setThanhtien(long thanhtien) {
         this.thanhtien = thanhtien;
+    }
+
+    public String getTensp() {
+        return tensp;
+    }
+
+    public void setTensp(String tensp) {
+        this.tensp = tensp;
     }
 
     @Override
     public String toString() {
-        return "CtHoaDon{" + "mahd=" + mahd + ", masp=" + masp + ", soluong=" + soluong + ", dongia=" + dongia + ", thanhtien=" + thanhtien + '}';
+        return "CtHoaDon{" + "mahd=" + mahd + ", masp=" + masp + ", tensp=" + tensp + ", soluong=" + soluong + ", dongia=" + dongia + ", thanhtien=" + thanhtien + '}';
     }
+
     
-    
-    
+
 }

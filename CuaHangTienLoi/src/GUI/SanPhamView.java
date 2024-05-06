@@ -7,8 +7,7 @@ package GUI;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import DTO.sanPham;
-import DTO.danhMuc;
-import DAL.DALsanPham;
+import DTO.DanhMuc;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -28,14 +27,14 @@ public class SanPhamView extends javax.swing.JPanel {
     DefaultTableModel model;
     private sanPham sp;
     private ArrayList<sanPham> list = new ArrayList<>();
-    private ArrayList<danhMuc> listDM = new ArrayList<>();
+    private ArrayList<DanhMuc> listDM = new ArrayList<>();
     SanPhamBLL spBLL = new SanPhamBLL(this);
     DanhMucBLL dmBLL = new DanhMucBLL();
     private int count = -1;
     private int soluong;
     private long dongia;
 
-    private String matmp, tentmp, soluongtmp, dongiatmp;
+    private String matmp, tentmp, soluongtmp, dongiatmp , maloaitmp;
     private File selectFile;
     private Icon icontmp;
     
@@ -57,6 +56,8 @@ public class SanPhamView extends javax.swing.JPanel {
         model.setColumnIdentifiers(new Object[]{
             "Mã sản phẩm", "Tên sản phẩm", "Mã loại", "Số lượng", "Đơn giá", "Ảnh minh họa"
         });
+        
+        
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -172,7 +173,7 @@ public class SanPhamView extends javax.swing.JPanel {
 
     public void comboBox() {
         listDM = dmBLL.getALL();
-        for (danhMuc dataDM : listDM) {
+        for (DanhMuc dataDM : listDM) {
             maloai_sp.addItem(dataDM.getMaloai());
         }
     }
@@ -398,11 +399,11 @@ public class SanPhamView extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(soluong_sp)
                                     .addComponent(dongia_sp)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(maloai_sp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(ten_sp)
-                                    .addComponent(ma_sp)))
+                                    .addComponent(ma_sp)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(maloai_sp, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_search, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -471,6 +472,7 @@ public class SanPhamView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+        ResetFieldText();
         Editable();
         btn_them.setEnabled(false);
         count = 1;
@@ -480,6 +482,7 @@ public class SanPhamView extends javax.swing.JPanel {
         switch (count) {
             case 1 -> {
                 // Thêm
+                boolean found = false;
                 String img;
                 String ma = ma_sp.getText().trim();
                 String ten = ten_sp.getText().trim();
@@ -491,6 +494,13 @@ public class SanPhamView extends javax.swing.JPanel {
                 if (icon == null || ma.isEmpty() || ten.isEmpty() || dongiaTxt.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin");
                     return;
+                }
+                
+                for (sanPham tmp : list) {
+                    if (tmp.getMasp().equals(ma)) {
+                        JOptionPane.showMessageDialog(this, "Mã sản phẩm đã tồn tại");
+                        return;
+                    }
                 }
 
 
@@ -533,7 +543,7 @@ public class SanPhamView extends javax.swing.JPanel {
                 String dongiaTxt = dongia_sp.getText().trim();
                 Icon icon = image_label.getIcon();
                 
-                if (matmp.equals(ma) && tentmp.equals(ten) && soluongtmp.equals(soluongTxt) && dongiatmp.equals(dongiaTxt) && icontmp.equals(icon)) {
+                if (matmp.equals(ma) && tentmp.equals(ten) && soluongtmp.equals(soluongTxt) && dongiatmp.equals(dongiaTxt) && icontmp.equals(icon) && maloaitmp.equals(maloai)) {
                     int confirm = JOptionPane.showConfirmDialog(this, "Chưa có thông tin nào được sửa đổi, bạn có muốn tiếp tục ?");
                     if (confirm == JOptionPane.YES_OPTION) {
                         return;
@@ -575,7 +585,7 @@ public class SanPhamView extends javax.swing.JPanel {
                         return;
                     }
                 }
-                
+              
                 if (icon instanceof ImageIcon) {
                     img = selectFile.getAbsolutePath();
                 } else {
@@ -608,6 +618,7 @@ public class SanPhamView extends javax.swing.JPanel {
         dongiatmp = dongia_sp.getText();
         soluongtmp = soluong_sp.getText();
         icontmp = image_label.getIcon();
+        maloaitmp = (String) maloai_sp.getSelectedItem();
         if (ma.isEmpty() && ten.isEmpty() && dongiaTxt.isEmpty() && icontmp == null && soluongTxt.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn đối tượng cần sửa");
         } else {

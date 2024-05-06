@@ -96,12 +96,12 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="soluong_sp" alignment="0" max="32767" attributes="0"/>
                                   <Component id="dongia_sp" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="maloai_sp" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
                                   <Component id="ten_sp" alignment="0" max="32767" attributes="0"/>
                                   <Component id="ma_sp" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="maloai_sp" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">

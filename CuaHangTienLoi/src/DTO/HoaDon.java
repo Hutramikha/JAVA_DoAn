@@ -4,23 +4,28 @@
  */
 package DTO;
 
-import java.time.LocalDate;
+import java.util.Date;
 
-/**
- *
- * @author votru
- */
 public class HoaDon {
-    private int mahd;
+    private String mahd;
     private String makh;
     private String manv;
-    private String ngaytao;
-    private int tongtien;
+    private Date ngaytao;
+    private long tongtien;
+    
 
     public HoaDon() {
     }
 
-    public int getMahd() {
+    public HoaDon(String mahd, String makh, String manv, Date ngaytao, long tongtien) {
+        this.mahd = mahd;
+        this.makh = makh;
+        this.manv = manv;
+        this.ngaytao = ngaytao;
+        this.tongtien = tongtien;
+    }
+
+    public String getMahd() {
         return mahd;
     }
 
@@ -32,15 +37,15 @@ public class HoaDon {
         return manv;
     }
 
-    public String getNgaytao() {
+    public Date getNgaytao() {
         return ngaytao;
     }
 
-    public int getTongtien() {
+    public long getTongtien() {
         return tongtien;
     }
 
-    public void setMahd(int mahd) {
+    public void setMahd(String mahd) {
         this.mahd = mahd;
     }
 
@@ -52,19 +57,11 @@ public class HoaDon {
         this.manv = manv;
     }
 
-    public void setNgaytao(String ngaytao) {
+    public void setNgaytao(Date ngaytao) {
         this.ngaytao = ngaytao;
     }
 
-    public void setTongtien(int tongtien) {
-        this.tongtien = tongtien;
-    }
-
-    public HoaDon(int mahd, String makh, String manv, String ngaytao, int tongtien) {
-        this.mahd = mahd;
-        this.makh = makh;
-        this.manv = manv;
-        this.ngaytao = ngaytao;
+    public void setTongtien(long tongtien) {
         this.tongtien = tongtien;
     }
 
@@ -72,9 +69,6 @@ public class HoaDon {
     public String toString() {
         return "HoaDon{" + "mahd=" + mahd + ", makh=" + makh + ", manv=" + manv + ", ngaytao=" + ngaytao + ", tongtien=" + tongtien + '}';
     }
+
    
-    
-    
 }
-
-

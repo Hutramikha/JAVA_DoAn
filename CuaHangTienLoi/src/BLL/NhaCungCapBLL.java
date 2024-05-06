@@ -31,15 +31,6 @@ public class NhaCungCapBLL implements BLLinterface<nhaCungCap>{
     public void add(nhaCungCap ncc) {
         list = dalncc.selectAll();
         boolean flag = false;
-        for (nhaCungCap tmp : list) {
-            if (tmp.getMaNCC().equals(ncc.getMaNCC())) {
-                flag = true;
-            }
-        }
-        if (flag) {
-            JOptionPane.showMessageDialog(nccView, "Mã nhà cung cấp đã tồn tại");
-            return;
-        }
         try {
             if (dalncc.insert(ncc) > 0) {
                 JOptionPane.showMessageDialog(nccView, "Thêm thành công");

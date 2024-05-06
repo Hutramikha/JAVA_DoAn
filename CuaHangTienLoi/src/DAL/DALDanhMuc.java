@@ -4,7 +4,7 @@
  */
 package DAL;
 
-import DTO.danhMuc;
+import DTO.DanhMuc;
 import Database.Connect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,14 +12,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class DALdanhMuc implements DALinterface<danhMuc> {
+public class DALdanhMuc implements DALinterface<DanhMuc> {
     
     public static DALdanhMuc getinstance() {
 	return new DALdanhMuc();
     }
 
     @Override
-    public int insert(danhMuc t) {
+    public int insert(DanhMuc t) {
         int count = 0;
         try {
             Connection conn = Connect.getConnection();
@@ -42,19 +42,17 @@ public class DALdanhMuc implements DALinterface<danhMuc> {
     }
 
     @Override
-    public int update(danhMuc t) {
+    public int update(DanhMuc t) {
         int count = 0;
         try {
             Connection con = Connect.getConnection();
             String sql = "UPDATE danhmuc "
                     + "SET "
                     + "tenloai=? "
-                    + ",img=? "
                     + "WHERE maloai = ?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, t.getTenloai());
-            pst.setString(2, t.getImg());
-            pst.setString(3, t.getMaloai());
+            pst.setString(2, t.getMaloai());
 
             count = pst.executeUpdate();
 
@@ -66,7 +64,7 @@ public class DALdanhMuc implements DALinterface<danhMuc> {
     }
     
     @Override
-     public int updateALL(danhMuc t , String maOld) {
+     public int updateALL(DanhMuc t , String maOld) {
         int kq = 0;
         try {
             Connection con = Connect.getConnection();
@@ -92,7 +90,7 @@ public class DALdanhMuc implements DALinterface<danhMuc> {
     }
 
     @Override
-    public int delete(danhMuc t) {
+    public int delete(DanhMuc t) {
        int count = 0;
         try {
             Connection conn = Connect.getConnection();
@@ -114,8 +112,8 @@ public class DALdanhMuc implements DALinterface<danhMuc> {
     }
 
     @Override
-    public ArrayList<danhMuc> selectAll() {
-        ArrayList<danhMuc> dms = new ArrayList<>();
+    public ArrayList<DanhMuc> selectAll() {
+        ArrayList<DanhMuc> dms = new ArrayList<>();
         try {
             Connection conn = Connect.getConnection();
             String sql = "select * from danhmuc";
@@ -125,7 +123,7 @@ public class DALdanhMuc implements DALinterface<danhMuc> {
                 String maloai = rs.getString("maloai");
                 String tenloai = rs.getString("tenloai");
                 String img = rs.getString("img");
-                danhMuc dm = new danhMuc(maloai,tenloai,img);
+                DanhMuc dm = new DanhMuc(maloai,tenloai,img);
                 dms.add(dm);
             }
             Connect.closeConnection(conn);
@@ -136,8 +134,8 @@ public class DALdanhMuc implements DALinterface<danhMuc> {
     }
 
     @Override
-    public danhMuc selectById(danhMuc t) {
-        danhMuc ncc = new danhMuc();
+    public DanhMuc selectById(DanhMuc t) {
+        DanhMuc ncc = new DanhMuc();
         try {
             Connection con = Connect.getConnection();
             String sql = "select * from danhmuc where maloai = ?";
@@ -148,7 +146,7 @@ public class DALdanhMuc implements DALinterface<danhMuc> {
                 String maloai = rs.getString("maloai");
                 String tenloai = rs.getString("tenloai");
                 String img = rs.getString("img");
-                ncc = new danhMuc(maloai,tenloai,img);
+                ncc = new DanhMuc(maloai,tenloai,img);
             }
 
         } catch (SQLException e) {
@@ -158,13 +156,13 @@ public class DALdanhMuc implements DALinterface<danhMuc> {
     }
 
     @Override
-    public danhMuc selectById(String T) {   
+    public DanhMuc selectById(String T) {   
         return null;
     }
 
     @Override
-    public ArrayList<danhMuc> selectByCondition(String keyword, String byWhat) {
-        ArrayList<danhMuc> dms = new ArrayList<>();
+    public ArrayList<DanhMuc> selectByCondition(String keyword, String byWhat) {
+        ArrayList<DanhMuc> dms = new ArrayList<>();
          try {
             Connection conn = Connect.getConnection();
              if (byWhat.equals("Theo mã")) {
@@ -176,7 +174,7 @@ public class DALdanhMuc implements DALinterface<danhMuc> {
                     String maloai = rs.getString("maloai");
                     String tenloai = rs.getString("tenloai");
                     String img = rs.getString("img");
-                    danhMuc dm = new danhMuc(maloai,tenloai,img);
+                    DanhMuc dm = new DanhMuc(maloai,tenloai,img);
                     dms.add(dm);
                  }
              }else if (byWhat.equals("Theo tên")) {
@@ -188,7 +186,7 @@ public class DALdanhMuc implements DALinterface<danhMuc> {
                     String maloai = rs.getString("maloai");
                     String tenloai = rs.getString("tenloai");
                     String img = rs.getString("img");
-                    danhMuc dm = new danhMuc(maloai,tenloai,img);
+                    DanhMuc dm = new DanhMuc(maloai,tenloai,img);
                     dms.add(dm);
                  }
              }

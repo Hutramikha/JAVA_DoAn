@@ -26,7 +26,7 @@ public class test extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        hoaDon1 = new GUI.HoaDon();
+        hoaDon1 = new GUI.HoaDonView();
         hELLO1 = new GUI.HELLO();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,6 +88,6 @@ public class test extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private GUI.HELLO hELLO1;
-    private GUI.HoaDon hoaDon1;
+    private GUI.HoaDonView hoaDon1;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import BLL.DanhMucBLL;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableCellRenderer;
-import DTO.danhMuc;
+import DTO.DanhMuc;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,17 +19,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.JFileChooser;
-public class DanhMuc extends javax.swing.JPanel {
+public class DanhMucView extends javax.swing.JPanel {
     DefaultTableModel model;
-    danhMuc dm = new danhMuc();
-    private ArrayList<danhMuc> list = new ArrayList<>();
+    DanhMuc dm = new DanhMuc();
+    private ArrayList<DanhMuc> list = new ArrayList<>();
     DanhMucBLL dmBll = new DanhMucBLL(this);
     private int count = 0;
     private String matmp, tentmp;
     private Icon icontmp;
     private File selectFile;
     
-    public DanhMuc() {
+    public DanhMucView() {
         initComponents();
         btn_luu.setEnabled(false);
         ma_loai.setEditable(false);
@@ -76,8 +76,8 @@ public class DanhMuc extends javax.swing.JPanel {
         table_danhmuc.addMouseListener(mouseAdapter);
     }
 
-    public void loadTable(ArrayList<danhMuc> list) {
-        danhMuc dm1 = list.get(list.size() - 1);
+    public void loadTable(ArrayList<DanhMuc> list) {
+        DanhMuc dm1 = list.get(list.size() - 1);
         model.addRow(new Object[]{
             dm1.getMaloai(), dm1.getTenloai(),dm1.getImg()
         });
@@ -90,7 +90,7 @@ public class DanhMuc extends javax.swing.JPanel {
     public void getTable() {
         list = dmBll.getALL();
         try {
-            for (danhMuc row : list) {
+            for (DanhMuc row : list) {
                 model.addRow(new Object[]{
                     row.getMaloai(), row.getTenloai(), row.getImg()
                 });
@@ -104,7 +104,7 @@ public class DanhMuc extends javax.swing.JPanel {
     public void getTableSearch(String keyword , String byWhat){
         list = dmBll.search(keyword, byWhat);
         try {
-            for (danhMuc row : list) {
+            for (DanhMuc row : list) {
                 model.addRow(new Object[]{
                      row.getMaloai(), row.getTenloai(), row.getImg()
                 });
@@ -322,10 +322,11 @@ public class DanhMuc extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel5))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(12, 12, 12)
@@ -406,7 +407,7 @@ public class DanhMuc extends javax.swing.JPanel {
                 String tenloai = ten_loai.getText().trim();
                 String img;
                 Icon icon = image_label.getIcon();
-                for (danhMuc tmp : list) {
+                for (DanhMuc tmp : list) {
                     if (tmp.getMaloai().equals(maloai)) {
                         JOptionPane.showMessageDialog(this, "Mã loại đã tồn tại");
                         return;
@@ -426,7 +427,7 @@ public class DanhMuc extends javax.swing.JPanel {
                 }
 
                 try {
-                    dm = new danhMuc(maloai, tenloai, img);
+                    dm = new DanhMuc(maloai, tenloai, img);
                     list.add(dm);
                     dmBll.add(dm);
                     ResetFieldText();
@@ -444,8 +445,9 @@ public class DanhMuc extends javax.swing.JPanel {
                 String maloai = ma_loai.getText().trim();
                 String tenloai = ten_loai.getText().trim();
                 Icon icon = image_label.getIcon();
+                
                 if (!matmp.equals(maloai)) {
-                    for (danhMuc tmp : list) {
+                    for (DanhMuc tmp : list) {
                         if (tmp.getMaloai().equals(maloai)) {
                             found = true;
                             break;
@@ -477,7 +479,7 @@ public class DanhMuc extends javax.swing.JPanel {
                 }
 
                 try {
-                    dm = new danhMuc(maloai, tenloai, img);
+                    dm = new DanhMuc(maloai, tenloai, img);
                     dmBll.update(dm, matmp);
                     ResetFieldText();
                     UnEditable();
@@ -488,6 +490,7 @@ public class DanhMuc extends javax.swing.JPanel {
                     System.out.println(ex);
                 }
             }
+
         }
     }//GEN-LAST:event_btn_luuActionPerformed
 
@@ -519,7 +522,7 @@ public class DanhMuc extends javax.swing.JPanel {
                 if (confirm == JOptionPane.YES_OPTION) {
                     Image image = ((ImageIcon) icon).getImage();
                     String imagePath = image.toString();
-                    dm = new danhMuc(maloai, tenloai,imagePath);
+                    dm = new DanhMuc(maloai, tenloai,imagePath);
                     list.remove(dm);
                     dmBll.delete(dm);
                     ResetFieldText();
@@ -578,7 +581,7 @@ public class DanhMuc extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_chonanh;
+    public javax.swing.JButton btn_chonanh;
     public javax.swing.JButton btn_luu;
     public javax.swing.JButton btn_reset1;
     public javax.swing.JButton btn_search;

@@ -76,6 +76,16 @@ public class sanPham {
         this.dongia = dongia;
         this.img = img;
     }
+
+    public sanPham(String masp, String tensp, int soluong, String maloaisp, long dongia) {
+        this.masp = masp;
+        this.tensp = tensp;
+        this.soluong = soluong;
+        this.maloaisp = maloaisp;
+        this.dongia = dongia;
+    }
+    
+    
     
     @Override
     public String toString() {

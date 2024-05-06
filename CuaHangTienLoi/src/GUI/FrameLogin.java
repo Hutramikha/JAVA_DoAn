@@ -174,6 +174,7 @@ public class FrameLogin extends javax.swing.JFrame {
                         tc.lDoanhThu.setEnabled(false);
                     }
                     case 2 -> {
+                        JOptionPane.showMessageDialog(null, "Tài khoản đã bị khóa");
                         return;
                     }
                     default -> JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu không chính xác !!!");

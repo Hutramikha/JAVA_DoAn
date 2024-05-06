@@ -5,20 +5,20 @@
 package BLL;
 
 
-import GUI.DanhMuc;
-import DTO.danhMuc;
+import GUI.DanhMucView;
+import DTO.DanhMuc;
 import javax.swing.JOptionPane;
 import DAL.DALdanhMuc;
 import java.util.ArrayList;
 
 
-public class DanhMucBLL implements BLLinterface<danhMuc>{
+public class DanhMucBLL implements BLLinterface<DanhMuc>{
     
-    private DanhMuc dmView;
+    private DanhMucView dmView;
     private DALdanhMuc daldm = new DALdanhMuc();
-    private ArrayList<danhMuc> list = new ArrayList<>();
+    private ArrayList<DanhMuc> list = new ArrayList<>();
 
-    public DanhMucBLL(DanhMuc dm) {
+    public DanhMucBLL(DanhMucView dm) {
         this.dmView = dm;
     }
 
@@ -27,15 +27,15 @@ public class DanhMucBLL implements BLLinterface<danhMuc>{
     }
     
     @Override
-    public ArrayList<danhMuc> getALL() {
+    public ArrayList<DanhMuc> getALL() {
         return daldm.selectAll();
     }
    
     @Override
-    public void add(danhMuc dm) {
+    public void add(DanhMuc dm) {
         list = daldm.selectAll();
         boolean flag = false;
-        for (danhMuc tmp : list) {
+        for (DanhMuc tmp : list) {
             if (tmp.getMaloai().equals(dm.getMaloai())) {
                 flag = true;
             }
@@ -56,7 +56,7 @@ public class DanhMucBLL implements BLLinterface<danhMuc>{
     }
     
     @Override
-    public void delete(danhMuc dm) {
+    public void delete(DanhMuc dm) {
          try {
              if (daldm.delete(dm) > 0) {
                 JOptionPane.showMessageDialog(dmView, "Xóa thành công");
@@ -69,11 +69,11 @@ public class DanhMucBLL implements BLLinterface<danhMuc>{
     }
     
     @Override
-    public void update(danhMuc dm, String maOld) {
+    public void update(DanhMuc dm, String maOld) {
          list = daldm.selectAll();
         boolean found = false;
         if (!dm.getMaloai().equals(maOld)) {
-            for (danhMuc tmp : list) {
+            for (DanhMuc tmp : list) {
                 if (tmp.getMaloai().equals(dm.getMaloai())) {
                     found = true;
                     break;
@@ -96,7 +96,7 @@ public class DanhMucBLL implements BLLinterface<danhMuc>{
     }
 
     @Override
-    public ArrayList<danhMuc> search(String keyword, String byWhat) {
+    public ArrayList<DanhMuc> search(String keyword, String byWhat) {
        return daldm.selectByCondition(keyword, byWhat);
     }
 

@@ -17,23 +17,29 @@ public class SanPhamBLL implements BLLinterface<sanPham>{
     }
      
     @Override
-     public ArrayList<sanPham> getALL() {
+    public ArrayList<sanPham> getALL() {
         return dalsp.selectAll();
     }
      
+     public ArrayList<sanPham> getALLmaLoai(String maLoai) {
+        return dalsp.selectAll(maLoai);
+    }
+     
+    public void updateSL(sanPham sp) {
+        try {
+            if (dalsp.update(sp) > 0) {
+                System.out.println("Số lượng thay đổi");
+            } else {
+                System.out.println("Số lượng không đổi");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
     @Override
     public void add(sanPham sp) {
         list = dalsp.selectAll();
-        boolean flag = false;
-        for (sanPham tmp : list) {
-            if (tmp.getMasp().equals(sp.getMasp())) {
-                flag = true;
-            }
-        }
-        if (flag) {
-            JOptionPane.showMessageDialog(spView, "Mã sản phẩm đã tồn tại");
-            return;
-        }
         try {
             if (dalsp.insert(sp) > 0) {
                 JOptionPane.showMessageDialog(spView, "Thêm thành công");
