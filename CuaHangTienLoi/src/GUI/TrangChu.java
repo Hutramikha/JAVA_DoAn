@@ -60,6 +60,7 @@ public final class TrangChu extends JFrame {
         nccView.clearTable();
         dmView.clearTable();
        ctHDView.clearTableHD();
+       dtView.clearTable();
     }
 
     @SuppressWarnings("unchecked")
@@ -286,7 +287,6 @@ public final class TrangChu extends JFrame {
                     isMenuVisible = true;
                     Pane_content.setVisible(isMenuVisible);
                     cardlayout.show(Pane_content, "Doanh Thu");
-//                    nvView.getTable();
                 } else {}
             }
 

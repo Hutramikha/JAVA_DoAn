@@ -12,7 +12,7 @@ public class SanPhamBLL implements BLLinterface<sanPham>{
     private ArrayList<sanPham> list = new ArrayList<>();
     
     
-     public SanPhamBLL(SanPhamView spView) {
+    public SanPhamBLL(SanPhamView spView) {
         this.spView = spView;
     }
      
@@ -21,7 +21,7 @@ public class SanPhamBLL implements BLLinterface<sanPham>{
         return dalsp.selectAll();
     }
      
-     public ArrayList<sanPham> getALLmaLoai(String maLoai) {
+    public ArrayList<sanPham> getALLmaLoai(String maLoai) {
         return dalsp.selectAll(maLoai);
     }
      

@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/DTO/CtHoaDon.java</file>
+            <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/DAL/doanhThuDAL.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/DAL/DALkhachHang.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/BLL/DanhMucBLL.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/GUI/TrangChu.java</file>
@@ -12,6 +13,7 @@
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/DTO/HoaDon.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/BLL/HoaDonBLL.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/GUI/HELLO.java</file>
+            <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/Database/Connect.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/GUI/NhanVienView.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/BLL/UserBLL.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/BLL/KhachHangBLL.java</file>
@@ -26,11 +28,13 @@
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/GUI/KhachHangView.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/GUI/DanhMucView.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/DAL/HoaDonDAL.java</file>
+            <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/GUI/doanhthu.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/DAL/DALnhanVien.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/BLL/CTHoaDonBLL.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/BLL/LoginoutBLL.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/DAL/DALuser.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/DAL/DALnhaCungCap.java</file>
+            <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/BLL/doanhthuBLL.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/GUI/HoaDonView.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/DAL/DALdanhMuc.java</file>
             <file>file:/D:/JAVA_DoAn/CuaHangTienLoi/src/GUI/FrameLogin.java</file>

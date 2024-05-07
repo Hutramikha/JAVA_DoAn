@@ -32,7 +32,7 @@ public class HELLO extends javax.swing.JPanel {
 
         hello_field.setFont(new java.awt.Font("Segoe UI", 1, 50)); // NOI18N
         hello_field.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        hello_field.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 2, 5, 2, new java.awt.Color(0, 153, 0)));
+        hello_field.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 3, 5, 3, new java.awt.Color(0, 153, 0)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
