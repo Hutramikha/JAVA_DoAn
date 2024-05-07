@@ -1067,7 +1067,9 @@ public class HoaDonView extends javax.swing.JPanel {
         
         try {
             hd = new HoaDon(mahd, makh, manv, ngaytaoDate, tongtien);
-            hdBLL.add(hd);
+            if (hdBLL.add2(hd) == 0) {
+                return;
+            }
             for (CtHoaDon cthdx : listct) {
                 ctHdBll.add(cthdx);
             }

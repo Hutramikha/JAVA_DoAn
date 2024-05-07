@@ -30,6 +30,10 @@ public class CTHoaDonBLL implements BLLinterface<CtHoaDon>{
     public ArrayList<CtHoaDon> getALL() {
         return dalcthd.selectAll();
     }
+    
+    public ArrayList<CtHoaDon> getALL2(String ma) {
+        return dalcthd.selectAll2(ma);
+    }
    
     @Override
     public void add(CtHoaDon cthd) {
@@ -56,6 +60,18 @@ public class CTHoaDonBLL implements BLLinterface<CtHoaDon>{
          } catch (Exception ex) {
              System.out.println(ex);
          }
+    }
+    
+    public void updateSL(CtHoaDon cthd , int soluong , long thanhtien) {
+        try {
+            if (dalcthd.update2(cthd, soluong , thanhtien) > 0) {
+                JOptionPane.showMessageDialog(cthdView, "Số lượng thay đổi");
+            } else {
+               JOptionPane.showMessageDialog(cthdView, "Số lượng không đổi");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
     
     @Override

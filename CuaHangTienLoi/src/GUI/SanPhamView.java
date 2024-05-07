@@ -665,7 +665,7 @@ public class SanPhamView extends javax.swing.JPanel {
 
     private void ChooseImage(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChooseImage
         try {
-            JFileChooser fchooser = new JFileChooser("D:\\CuaHangTienLoi\\src\\img");
+            JFileChooser fchooser = new JFileChooser("D:\\JAVA_DoAn\\CuaHangTienLoi\\src\\img");
             fchooser.setDialogTitle("Mở file");
             int result = fchooser.showOpenDialog(null);
             if (result == JFileChooser.APPROVE_OPTION) {

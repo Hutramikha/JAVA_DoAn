@@ -45,6 +45,21 @@ public class HoaDonBLL implements BLLinterface<HoaDon>{
         }
     }
     
+    public int add2(HoaDon hd) {
+        list = dalhd.selectAll();
+        try {
+            if (dalhd.insert(hd) > 0) {
+                JOptionPane.showMessageDialog(hdView, "Thêm thành công");
+                return 1;
+            } else {
+                JOptionPane.showMessageDialog(hdView, "Thêm thất bại");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return 0;
+    }
+    
     @Override
     public void delete(HoaDon hd) {
          try {

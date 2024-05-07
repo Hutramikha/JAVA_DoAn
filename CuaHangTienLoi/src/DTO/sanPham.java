@@ -84,6 +84,13 @@ public class sanPham {
         this.maloaisp = maloaisp;
         this.dongia = dongia;
     }
+
+    public sanPham(String masp, int soluong) {
+        this.masp = masp;
+        this.soluong = soluong;
+    }
+    
+    
     
     
     

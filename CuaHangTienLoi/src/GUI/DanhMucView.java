@@ -563,7 +563,7 @@ public class DanhMucView extends javax.swing.JPanel {
 
     private void btn_chonanhChooseImage(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_chonanhChooseImage
         try {
-            JFileChooser fchooser = new JFileChooser("D:\\CuaHangTienLoi\\src\\img");
+            JFileChooser fchooser = new JFileChooser("D:\\JAVA_DoAn\\CuaHangTienLoi\\src\\img");
             fchooser.setDialogTitle("Mở file");
             int result = fchooser.showOpenDialog(null);
             if (result == JFileChooser.APPROVE_OPTION) {

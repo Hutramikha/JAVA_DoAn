@@ -25,6 +25,14 @@ public class CtHoaDon {
         this.thanhtien = thanhtien;
     }
 
+    public CtHoaDon(String masp, int soluong, long thanhtien) {
+        this.masp = masp;
+        this.soluong = soluong;
+        this.thanhtien = thanhtien;
+    }
+    
+    
+
     public String getMahd() {
         return mahd;
     }

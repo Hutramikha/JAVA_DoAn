@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
 
 /**
  *
@@ -45,11 +44,31 @@ public class CtHoaDonDAL implements DALinterface<CtHoaDon> {
         return ketqua;
     }
 
-    @Override
-    public int update(CtHoaDon t) {
-       
-        return 0;
-       
+    public int update2(CtHoaDon t , int soluong , long thanhtien) {
+       int ketqua = 0;
+        try {
+            Connection con = Connect.getConnection();
+            String sql = "UPDATE cthoadon "
+                    + "SET "
+                    + "soluong = ? "
+                    + ", thanhtien = ? "
+                    + "WHERE mahd = ? AND masp = ? AND soluong = ? AND thanhtien = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, soluong);
+             pst.setLong(2, thanhtien);
+            pst.setString(3, t.getMahd());
+            pst.setString(4, t.getMasp());
+            pst.setInt(5, t.getSoluong());
+            pst.setLong(6, t.getThanhtien());
+
+            ketqua = pst.executeUpdate();
+
+            Connect.closeConnection(con);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ketqua;
+
     }
 
     @Override
@@ -58,9 +77,12 @@ public class CtHoaDonDAL implements DALinterface<CtHoaDon> {
         try {
             Connection c = Connect.getConnection();
 
-            String sql = "DELETE FROM cthoadon WHERE mahd = ?";
+            String sql = "DELETE FROM cthoadon WHERE mahd = ? and masp = ? and soluong = ? and thanhtien = ?";
             PreparedStatement pts = c.prepareStatement(sql);
             pts.setString(1, t.getMahd());
+            pts.setString(2, t.getMasp());
+            pts.setInt(3, t.getSoluong());
+            pts.setLong(4, t.getThanhtien());
             kq = pts.executeUpdate();
 
             Connect.closeConnection(c);
@@ -85,6 +107,32 @@ public class CtHoaDonDAL implements DALinterface<CtHoaDon> {
             String sql = "SELECT * FROM cthoadon";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery(sql);
+            while (rs.next()) {
+                String mahd = rs.getString("mahd");
+                String masp = rs.getString("masp");
+                String tensp = rs.getString("tensp");
+                int soluongmua = rs.getInt("soluong");
+                long dongia = rs.getLong("dongia");
+                long thanhtien = rs.getLong("thanhtien");
+               
+                CtHoaDon hd = new CtHoaDon(mahd, masp, tensp, soluongmua, dongia, thanhtien);
+                ketqua.add(hd);
+            }
+            Connect.closeConnection(con);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ketqua;
+    }
+    
+     public ArrayList<CtHoaDon> selectAll2(String ma) {
+        ArrayList<CtHoaDon> ketqua = new ArrayList<>();
+        try {
+            Connection con = Connect.getConnection();
+            String sql = "SELECT * FROM cthoadon where mahd = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, ma);
+            ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 String mahd = rs.getString("mahd");
                 String masp = rs.getString("masp");
@@ -141,11 +189,15 @@ public class CtHoaDonDAL implements DALinterface<CtHoaDon> {
             e.printStackTrace();
         }
         return ketqua;
-
     }
 
     @Override
     public ArrayList<CtHoaDon> selectByCondition(String keyword, String byWhat) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int update(CtHoaDon t) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

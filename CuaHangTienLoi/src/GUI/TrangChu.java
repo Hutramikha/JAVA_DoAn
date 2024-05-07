@@ -59,6 +59,7 @@ public final class TrangChu extends JFrame {
         khView.clearTable();
         nccView.clearTable();
         dmView.clearTable();
+       ctHDView.clearTableHD();
     }
 
     @SuppressWarnings("unchecked")
@@ -142,7 +143,7 @@ public final class TrangChu extends JFrame {
         pHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                //                ClearTableALL();
+                ClearTableALL();
                 isMenuVisible = true;
                 Pane_content.setVisible(isMenuVisible);
                 cardlayout.show(Pane_content, "Hóa Đơn");
@@ -176,10 +177,11 @@ public final class TrangChu extends JFrame {
         pChiTietHD.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                //ClearTableALL();
+                ClearTableALL();
                 isMenuVisible = true;
                 Pane_content.setVisible(isMenuVisible);
                 cardlayout.show(Pane_content, "Chi Tiết HĐ");
+                ctHDView.getTableHD();
             }
 
             @Override
@@ -280,7 +282,7 @@ public final class TrangChu extends JFrame {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (user.getStatus() == 0) {
-//                    ClearTableALL();
+                    ClearTableALL();
                     isMenuVisible = true;
                     Pane_content.setVisible(isMenuVisible);
                     cardlayout.show(Pane_content, "Doanh Thu");
@@ -419,7 +421,7 @@ public final class TrangChu extends JFrame {
         pPhieuNhap.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                //                ClearTableALL();
+                ClearTableALL();
                 isMenuVisible = true;
                 Pane_content.setVisible(isMenuVisible);
                 cardlayout.show(Pane_content, "QL Phiếu Nhập");
@@ -452,6 +454,7 @@ public final class TrangChu extends JFrame {
         pTaiKhoan.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClearTableALL();
                 isMenuVisible = true;
                 Pane_content.setVisible(isMenuVisible);
                 cardlayout.show(Pane_content, "Tài Khoản");
