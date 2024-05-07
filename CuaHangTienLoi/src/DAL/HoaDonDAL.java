@@ -185,4 +185,26 @@ public class HoaDonDAL implements DALinterface<HoaDon> {
         return null;
        
     }
+    
+    
+//    public void insertHD (HoaDon hd) {
+//        int ketqua = 0;
+//        try {
+//            Connection conn = Connect.getConnection();
+//            String sql = "INSERT INTO hoadon (mahd,makh,manv,ngaytao,tongtien) " + "VALUES(?,?,?,?,?)";
+//            PreparedStatement pst = conn.prepareStatement(sql);
+//           
+//           pst.setString(1, hd.getMahd());
+//           pst.setString(2, hd.getMakh());
+//           pst.setString(3, hd.getManv());
+//           pst.setDate(4, (java.sql.Date) hd.getNgaytao());
+//           pst.setLong(5, hd.getTongtien());
+//
+//           ketqua = pst.executeUpdate();
+//
+//           Connect.closeConnection(conn);
+//        } catch (Exception ex) {
+//            
+//        }       
+//    }
 }

@@ -601,6 +601,7 @@ public class SanPhamView extends javax.swing.JPanel {
                     clearTable();
                     getTable();
                     btn_sua.setEnabled(true);
+                    soluong_sp.setEditable(false);
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
